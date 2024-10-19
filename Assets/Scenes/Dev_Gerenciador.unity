@@ -3287,9 +3287,14 @@ PrefabInstance:
       propertyPath: resetInterface
       value: 
       objectReference: {fileID: 1754903058}
+    - target: {fileID: 8313286325252092199, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3273985320110933090, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
+    - {fileID: 7301030825278753132, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
