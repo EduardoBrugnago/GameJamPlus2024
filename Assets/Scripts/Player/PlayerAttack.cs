@@ -6,11 +6,6 @@ public class PlayerAttack : MonoBehaviour
     bool isAttacking = false;
     float atkDuration = 0.4f;
     float atkTimer = 0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
 
     private void Update()
     {
