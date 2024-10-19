@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;    // Velocidade de movimento
     public Rigidbody2D rb;          // Refer�ncia ao Rigidbody2D do player
     public Camera cam;              // Refer�ncia � c�mera principal
+    public GameObject body;
+    public Animator animator;
 
     public bool onAction = false;
     Vector2 movement;               // Vetor de movimenta��o

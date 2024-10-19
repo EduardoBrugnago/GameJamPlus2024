@@ -41,14 +41,10 @@ public class PlayerShooting : MonoBehaviour
         //}
 
         // Se clicar com o mouse ou pressionar o botão de tiro, tenta atirar
-        if (Input.GetButtonDown("Fire1") && canShoot && shotsFired < maxShots)
-        {
-            canShoot = false;
-            StartCoroutine(ShootCoroutine());
-        }
 
         if (Input.GetButtonDown("Fire2") && canShoot)
         {
+            GetComponent<PlayerController>().animator.Play("PShoot");
             canShoot = false;
             Teleport();
         }

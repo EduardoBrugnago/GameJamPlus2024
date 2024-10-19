@@ -22,6 +22,7 @@ public class PlayerAttack : MonoBehaviour
         if (!isAttacking)
         {
             melee.SetActive(true);
+            GetComponent<PlayerController>().animator.Play("PAttack");
             isAttacking = true;
         }
     }
