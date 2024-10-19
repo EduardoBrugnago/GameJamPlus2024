@@ -5,13 +5,13 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;    // Velocidade de movimento
-    public Rigidbody2D rb;          // Referência ao Rigidbody2D do player
-    public Camera cam;              // Referência à câmera principal
+    public Rigidbody2D rb;          // Referï¿½ncia ao Rigidbody2D do player
+    public Camera cam;              // Referï¿½ncia ï¿½ cï¿½mera principal
 
     public bool onAction = false;
-    Vector2 movement;               // Vetor de movimentação
-    Vector2 mousePos;               // Posição do mouse
-    Vector2 aimDirection;           // Direção da mira usando controle
+    Vector2 movement;               // Vetor de movimentaï¿½ï¿½o
+    Vector2 mousePos;               // Posiï¿½ï¿½o do mouse
+    Vector2 aimDirection;           // Direï¿½ï¿½o da mira usando controle
 
     public int health = 2;
     public int maxHealth = 2;
@@ -27,23 +27,23 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        // Pegando o Rigidbody2D automaticamente do próprio player
+        // Pegando o Rigidbody2D automaticamente do prï¿½prio player
         rb = GetComponent<Rigidbody2D>();
 
-        // Definir Rigidbody2D para Kinematic se necessário (para evitar qualquer física indesejada)
+        // Definir Rigidbody2D para Kinematic se necessï¿½rio (para evitar qualquer fï¿½sica indesejada)
         //rb.bodyType = RigidbodyType2D.Kinematic;
 
-        // Pegando a câmera principal
+        // Pegando a cï¿½mera principal
         cam = Camera.main;
 
         if (rb == null)
         {
-            Debug.LogError("Rigidbody2D não encontrado no Player.");
+            Debug.LogError("Rigidbody2D nï¿½o encontrado no Player.");
         }
 
         if (cam == null)
         {
-            Debug.LogError("Câmera principal não encontrada.");
+            Debug.LogError("Cï¿½mera principal nï¿½o encontrada.");
         }
 
         circleTransform = transform.Find("Circle");
@@ -57,20 +57,20 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Movimentação usando teclado ou controle
+        // Movimentaï¿½ï¿½o usando teclado ou controle
         if (!onAction)
         {
-            movement.x = Input.GetAxisRaw("Horizontal");  // Eixo Horizontal (WASD, setas, ou stick analógico esquerdo)
+            movement.x = Input.GetAxisRaw("Horizontal");  // Eixo Horizontal (WASD, setas, ou stick analï¿½gico esquerdo)
             movement.y = Input.GetAxisRaw("Vertical");    // Eixo Vertical
 
-            // Captura da posição do mouse (para mira com mouse)
+            // Captura da posiï¿½ï¿½o do mouse (para mira com mouse)
             mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-            //// Mira com controle (stick analógico direito)
+            //// Mira com controle (stick analï¿½gico direito)
             //float aimHorizontal = Input.GetAxis("RightStickX");
             //float aimVertical = Input.GetAxis("RightStickY");
 
-            //// Se houver entrada no stick direito, define a direção de mira com controle
+            //// Se houver entrada no stick direito, define a direï¿½ï¿½o de mira com controle
             //if (Mathf.Abs(aimHorizontal) > 0.1f || Mathf.Abs(aimVertical) > 0.1f)
             //{
             //    aimDirection = new Vector2(aimHorizontal, aimVertical).normalized;
@@ -92,27 +92,27 @@ public class PlayerController : MonoBehaviour
                 movement = movement.normalized;
             }
 
-            // Se não houver movimento, zerar a velocidade
+            // Se nï¿½o houver movimento, zerar a velocidade
             if (movement.magnitude == 0)
             {
                 rb.velocity = Vector2.zero;  // Zera a velocidade do Rigidbody2D para parar o movimento imediatamente
             }
             else
             {
-                // Aplicar movimentação diretamente à posição
+                // Aplicar movimentaï¿½ï¿½o diretamente ï¿½ posiï¿½ï¿½o
                 rb.velocity = movement * moveSpeed;
             }
 
             // Mira com o mouse (teclado + mouse)
             Vector2 lookDir = mousePos - rb.position;
 
-            // Se está usando controle, sobrepõe a direção de mira
+            // Se estï¿½ usando controle, sobrepï¿½e a direï¿½ï¿½o de mira
             if (aimDirection.magnitude > 0.1f)
             {
                 lookDir = aimDirection;
             }
 
-            // Calcular o ângulo e aplicar rotação
+            // Calcular o ï¿½ngulo e aplicar rotaï¿½ï¿½o
             float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
             circleTransform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
