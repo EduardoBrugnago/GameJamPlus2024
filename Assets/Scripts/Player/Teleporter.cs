@@ -88,8 +88,12 @@ public class Teleporter : MonoBehaviour
 
         if (!hasCollided)
         {
-            Debug.Log("Morreu");
             Destroy(gameObject);
+            PlayerController playerControl = player.GetComponent<PlayerController>();
+            if (playerControl != null)
+            {
+                playerControl.HandleDeath();
+            }
         }
     }
 

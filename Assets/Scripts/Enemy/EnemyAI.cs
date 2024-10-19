@@ -146,8 +146,6 @@ public class EnemyAI : MonoBehaviour
 
     protected virtual IEnumerator Attack()
     {
-        Debug.Log("Atacando o jogador!");
-
         yield return new WaitForSeconds(1f);
 
         if (Vector2.Distance(player.position, transform.position) > attackRange)

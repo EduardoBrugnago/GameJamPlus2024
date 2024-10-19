@@ -29,7 +29,7 @@ public class LifeControler : MonoBehaviour
 
     public void HandleDeath()
     {
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     public void ValidateDmgTypeByTarget(bool isTeleport, int dmg)
@@ -43,16 +43,26 @@ public class LifeControler : MonoBehaviour
             if (enemy != null)
             {
                 bool isValid = lvlControler.ValidateTarget(enemy);
+
                 if (isValid)
                 {
-                    HandleDamege(999);
+                    bool isLastEnemy = lvlControler.ValidateLastEnemy(enemy);
+                    Debug.Log(isLastEnemy + " - é o ultimo?");
+                    if (!isLastEnemy)
+                    {
+                        HandleDamege(999);
+                    } else
+                    {
+                        lvlControler.HandleWin(enemy);
+                    }
+                    
                 }
                 else
                 {
                     PlayerController playerControl = player.GetComponent<PlayerController>();
                     if (playerControl != null)
                     {
-                        HandleDamege(999);
+                        playerControl.HandleDeath();
                     }
                 }
             }

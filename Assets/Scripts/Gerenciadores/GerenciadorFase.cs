@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,7 +17,7 @@ public enum TargetType
 public class GerenciadorFase : MonoBehaviour
 {
     public TargetType currentTarget;
-
+    public int currentIndex = 0;
     // Lista de alvos
     public List<TargetType> targetList;
     public List<EnemyControler> enemyList = new List<EnemyControler>();
@@ -28,7 +29,7 @@ public class GerenciadorFase : MonoBehaviour
     private GameObject player;
     public TextMeshProUGUI pointsDisplay;
     public TextMeshProUGUI comboDisplay;
-
+    public GameObject Ui_State;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -37,6 +38,7 @@ public class GerenciadorFase : MonoBehaviour
         if(targetList.Count > 0)
         {
             currentTarget = targetList[0];
+            currentIndex = 0;
             if(player != null)
             {
                 PlayerController controlerPlayer = player.GetComponent<PlayerController>();
@@ -58,8 +60,8 @@ public class GerenciadorFase : MonoBehaviour
             Debug.Log(target.Nota);
             if (target.Nota == currentTarget)
             {
-                HandleCombo(target.deathPoints);
                 return true;
+
             }
             else
             {
@@ -73,6 +75,21 @@ public class GerenciadorFase : MonoBehaviour
         }
     }
 
+
+    public bool ValidateLastEnemy(EnemyControler target)
+    {
+        Debug.Log(currentIndex + " - "+ targetList.Count);
+        if (currentIndex >= targetList.Count - 1)
+        {
+            HandleWin(target);
+            return true;
+        }
+        else
+        {
+            HandleCombo(target.deathPoints);
+            return false;
+        }
+    }
     // Método para gerenciar o BulletTime
     public void BulletTime() 
     {
@@ -82,7 +99,6 @@ public class GerenciadorFase : MonoBehaviour
     // Método para gerenciar um combo de pontos
     private void HandleCombo(int targetPoints)
     {
-        Debug.Log("Calculando pontos");
         totalHits++;
 
         if (totalHits >= comboHitNeeded)
@@ -116,20 +132,53 @@ public class GerenciadorFase : MonoBehaviour
         totalHits = 0; 
     }
 
-    private void HandleWin()
+    public void HandleWin(EnemyControler target)
     {
-        Debug.Log("Ganhou: " + currentPoints);
+        Camera mainCamera = Camera.main;
+        Debug.Log(mainCamera);
+        if (mainCamera != null)
+        {
+            Vector3 originalPosition = mainCamera.transform.position;
+            Quaternion originalRotation = mainCamera.transform.rotation;
+
+            mainCamera.transform.DOMove(originalPosition + new Vector3(0, 0, -2f), 0.5f).SetEase(Ease.OutQuad);
+            mainCamera.transform.DORotate(originalRotation * new Vector3(0, 0, 8f), 0.5f).SetEase(Ease.OutQuad).OnComplete(() =>
+            {
+                // Destrói o target após a animação
+                if (target != null)
+                {
+                    Destroy(target.gameObject);
+                }
+
+                ResetInterface controlerReset = Ui_State.GetComponent<ResetInterface>();
+                if (controlerReset != null)
+                {
+                    controlerReset.VictoryModal();
+                }
+            });
+        }
+        else
+        {
+            if (target != null)
+            {
+                Destroy(target.gameObject);
+            }
+
+            ResetInterface controlerReset = Ui_State.GetComponent<ResetInterface>();
+            if (controlerReset != null)
+            {
+                controlerReset.VictoryModal();
+            }
+ 
+        }
     }
 
 
     private void ValidateNextTarget()
     {
         TargetType proximaNota = GetNextTarget(currentTarget);
-        Debug.Log("Procurando proximo alvo");
-        if (proximaNota == 0)
-        {
-            HandleWin();
-        } else
+  
+        if (proximaNota != 0)
         {
             bool haveEnemy = false;
             foreach (var EnemyControler in enemyList)
@@ -139,11 +188,11 @@ public class GerenciadorFase : MonoBehaviour
                     haveEnemy = true;
                 }
             }
-
+            Debug.Log(haveEnemy);
             if (haveEnemy)
             {
               
-                currentTarget = proximaNota ;
+                currentTarget = proximaNota;
                 if (player != null)
                 {
                     PlayerController controlerPlayer = player.GetComponent<PlayerController>();
@@ -163,17 +212,15 @@ public class GerenciadorFase : MonoBehaviour
     // Método para obter a próxima nota musical
     private TargetType GetNextTarget(TargetType notaAtual)
     {
-        Debug.Log("Procurando proximo alvo e limpando array");
-        int indiceAtual = targetList.IndexOf(notaAtual);
-
-        // Se a nota não estiver na lista, retorne null
-        if (indiceAtual == -1)
+        if (currentIndex == -1 || currentIndex >= targetList.Count - 1)
         {
+            currentIndex = targetList.Count - 1;
             return 0;
         }
 
         // Avança para o próximo alvo
-        int indiceProximo = (indiceAtual + 1) % targetList.Count;
+        int indiceProximo = (currentIndex + 1) % targetList.Count;
+        currentIndex = indiceProximo;
         return targetList[indiceProximo];
     }
 

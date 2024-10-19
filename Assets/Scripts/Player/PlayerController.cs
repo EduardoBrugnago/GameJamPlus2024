@@ -140,6 +140,7 @@ public class PlayerController : MonoBehaviour
     }
     public void HandleDeath()
     {
+        Debug.Log(resetInterface + "- AAAAAAAAA");
         if(resetInterface != null)
         {
             resetInterface.Reset();
