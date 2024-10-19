@@ -53,10 +53,15 @@ public class Teleporter : MonoBehaviour
 
                     if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Destructible"))
                     {
-                        Destroy(collision.gameObject);
                         player.transform.position = collision.gameObject.transform.position;
 
                         playerShooting.shotsFired = 0;
+
+                        LifeControler life = collision.gameObject.GetComponent<LifeControler>();
+                        if (life != null)
+                        {
+                            life.HandleDamege(9999);
+                        }
 
                         PlayerController playerController = player.GetComponent<PlayerController>();
                         if (playerController != null)

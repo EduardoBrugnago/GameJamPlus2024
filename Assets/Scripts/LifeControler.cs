@@ -6,9 +6,16 @@ using UnityEngine.SceneManagement;
 public class LifeControler : MonoBehaviour
 {
     public int health = 2;
+    public GerenciadorFase lvlControler;
+
+    public void Start()
+    {
+        lvlControler = FindFirstObjectByType<GerenciadorFase>();
+    }
 
     public void HandleDamege(int dmg)
     {
+        
         health -= dmg;
         if (health <= 0)
         {
@@ -19,6 +26,11 @@ public class LifeControler : MonoBehaviour
 
     public void HandleDeath()
     {
+        EnemyControler enemy = GetComponent<EnemyControler>();
+        if (enemy != null)
+        {
+            lvlControler.ValidateTarget(enemy);
+        }
         Destroy(gameObject);
     }
 }
