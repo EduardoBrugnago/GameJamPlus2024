@@ -18,7 +18,8 @@ public class EnemyAI : MonoBehaviour
     public float fieldOfViewAngle = 90f;
     public LayerMask obstacleMask;
     public GameObject melee;
-    float atkDuration = 0.4f;
+    public float atkDuration = 0.4f;
+    public float atkDelay = 1.0f;
     float atkTimer = 0f;
     bool isAttacking = false;
 
@@ -150,11 +151,10 @@ public class EnemyAI : MonoBehaviour
 
     protected virtual IEnumerator Attack()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(atkDelay);
 
         if (Vector2.Distance(player.position, transform.position) > attackRange)
         {
-            Debug.Log(1);
             currentState = EnemyState.Perseguicao;
         }
         else
