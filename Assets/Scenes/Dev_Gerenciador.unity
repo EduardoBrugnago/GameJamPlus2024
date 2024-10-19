@@ -3215,6 +3215,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1267380495553452806, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3229959640016031552, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.080062
@@ -3270,6 +3274,14 @@ PrefabInstance:
     - target: {fileID: 7163071291004967678, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
       propertyPath: maxHealth
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7163071291004967678, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
+      propertyPath: deathTimer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7163071291004967678, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
+      propertyPath: maxDeathTimer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7163071291004967678, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
       propertyPath: resetInterface
