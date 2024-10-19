@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         // Definir Rigidbody2D para Kinematic se necessário (para evitar qualquer física indesejada)
-        rb.bodyType = RigidbodyType2D.Kinematic;
+        //rb.bodyType = RigidbodyType2D.Kinematic;
 
         // Pegando a câmera principal
         cam = Camera.main;
