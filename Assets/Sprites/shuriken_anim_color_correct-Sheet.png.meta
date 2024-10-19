@@ -1,46 +1,46 @@
 fileFormatVersion: 2
-guid: a803f2eaed9969b4688b1887894454fc
+guid: 9b226085abdabfe43ab2b0835d82f56b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7169371653411447740
-    second: Player_Shoot_0
+      213: -4932435999581691959
+    second: shuriken_anim_color_correct-Sheet_0
   - first:
-      213: 998706065937494223
-    second: Player_Shoot_1
+      213: -4725264115660029742
+    second: shuriken_anim_color_correct-Sheet_1
   - first:
-      213: 3218591608074427183
-    second: Player_Shoot_2
+      213: 328053910508773174
+    second: shuriken_anim_color_correct-Sheet_2
   - first:
-      213: 7069005636327514907
-    second: Player_Shoot_3
+      213: -1565644341816042682
+    second: shuriken_anim_color_correct-Sheet_3
   - first:
-      213: 5959281240547110345
-    second: Player_Shoot_4
+      213: -7663668941121203094
+    second: shuriken_anim_color_correct-Sheet_4
   - first:
-      213: -4504545249797230465
-    second: Player_Shoot_5
+      213: -1442043882736023991
+    second: shuriken_anim_color_correct-Sheet_5
   - first:
-      213: 1172409000749914668
-    second: Player_Shoot_6
+      213: -5370740074484819373
+    second: shuriken_anim_color_correct-Sheet_6
   - first:
-      213: 4588946715594402949
-    second: Player_Shoot_7
+      213: 4987843383844123689
+    second: shuriken_anim_color_correct-Sheet_7
   - first:
-      213: -2657296302270952974
-    second: Player_Shoot_8
+      213: 8490115338393464018
+    second: shuriken_anim_color_correct-Sheet_8
   - first:
-      213: 7609456078060246961
-    second: Player_Shoot_9
+      213: 1436514249579432162
+    second: shuriken_anim_color_correct-Sheet_9
   - first:
-      213: 4903747820284936165
-    second: Player_Shoot_10
+      213: -208722957254955132
+    second: shuriken_anim_color_correct-Sheet_10
   - first:
-      213: -285017172600918862
-    second: Player_Shoot_11
+      213: 4138857054070691178
+    second: shuriken_anim_color_correct-Sheet_11
   - first:
-      213: 3482746128514861387
-    second: Player_Shoot_12
+      213: 5589010785075466049
+    second: shuriken_anim_color_correct-Sheet_12
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -149,13 +149,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Shoot_0
+      name: shuriken_anim_color_correct-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 32
-        width: 32
-        height: 32
+        x: 10
+        y: 34
+        width: 19
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 44cd7a75776418c90800000000000000
-      internalID: -7169371653411447740
+      spriteID: 9cf959f67977c8bb0800000000000000
+      internalID: -4932435999581691959
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Shoot_1
+      name: shuriken_anim_color_correct-Sheet_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
+        x: 42
+        y: 34
+        width: 19
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fc07b3720ed1cdd00800000000000000
-      internalID: 998706065937494223
+      spriteID: 2d00f24825d7c6eb0800000000000000
+      internalID: -4725264115660029742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Shoot_2
+      name: shuriken_anim_color_correct-Sheet_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 32
-        width: 32
-        height: 32
+        x: 74
+        y: 34
+        width: 19
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f2b5454c30cbaac20800000000000000
-      internalID: 3218591608074427183
+      spriteID: 63f9d032b4b7d8400800000000000000
+      internalID: 328053910508773174
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Shoot_3
+      name: shuriken_anim_color_correct-Sheet_3
       rect:
         serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
+        x: 106
+        y: 34
+        width: 19
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,20 +226,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b13298c4c272a1260800000000000000
-      internalID: 7069005636327514907
+      spriteID: 64b547924c6b54ae0800000000000000
+      internalID: -1565644341816042682
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Shoot_4
+      name: shuriken_anim_color_correct-Sheet_4
       rect:
         serializedVersion: 2
-        x: 128
-        y: 32
-        width: 32
-        height: 32
+        x: 138
+        y: 34
+        width: 19
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,20 +247,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9cda573f6be93b250800000000000000
-      internalID: 5959281240547110345
+      spriteID: a64d640b3bd25a590800000000000000
+      internalID: -7663668941121203094
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Shoot_5
+      name: shuriken_anim_color_correct-Sheet_5
       rect:
         serializedVersion: 2
-        x: 160
-        y: 32
-        width: 32
-        height: 32
+        x: 170
+        y: 34
+        width: 19
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,20 +268,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f70b92f16f3ac71c0800000000000000
-      internalID: -4504545249797230465
+      spriteID: 9468efa9ab4dcfbe0800000000000000
+      internalID: -1442043882736023991
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Shoot_6
+      name: shuriken_anim_color_correct-Sheet_6
       rect:
         serializedVersion: 2
-        x: 192
-        y: 32
-        width: 32
-        height: 32
+        x: 202
+        y: 34
+        width: 19
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -289,20 +289,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c2a5b2546cb354010800000000000000
-      internalID: 1172409000749914668
+      spriteID: 35a906f8b5c4775b0800000000000000
+      internalID: -5370740074484819373
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Shoot_7
+      name: shuriken_anim_color_correct-Sheet_7
       rect:
         serializedVersion: 2
-        x: 0
+        x: 10
+        y: 2
+        width: 19
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 924bf418121683540800000000000000
+      internalID: 4987843383844123689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shuriken_anim_color_correct-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 42
         y: 0
-        width: 32
-        height: 32
+        width: 19
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -310,20 +331,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 58c233c79b63faf30800000000000000
-      internalID: 4588946715594402949
+      spriteID: 2dca90feae2f2d570800000000000000
+      internalID: 8490115338393464018
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Shoot_8
+      name: shuriken_anim_color_correct-Sheet_9
       rect:
         serializedVersion: 2
-        x: 32
+        x: 74
         y: 0
-        width: 32
-        height: 32
+        width: 18
+        height: 26
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -331,20 +352,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2f94e2097136f1bd0800000000000000
-      internalID: -2657296302270952974
+      spriteID: 2e808f859168fe310800000000000000
+      internalID: 1436514249579432162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Shoot_9
+      name: shuriken_anim_color_correct-Sheet_10
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
+        x: 106
+        y: 1
+        width: 18
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -352,20 +373,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1b7d7b28cf73a9960800000000000000
-      internalID: 7609456078060246961
+      spriteID: 48f695483977a1df0800000000000000
+      internalID: -208722957254955132
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Shoot_10
+      name: shuriken_anim_color_correct-Sheet_11
       rect:
         serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
+        x: 138
+        y: 1
+        width: 19
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -373,20 +394,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5effd2059ac9d0440800000000000000
-      internalID: 4903747820284936165
+      spriteID: a65d004ef8c207930800000000000000
+      internalID: 4138857054070691178
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Shoot_11
+      name: shuriken_anim_color_correct-Sheet_12
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
+        x: 170
+        y: 1
+        width: 19
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -394,29 +415,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2bc6c30446a6b0cf0800000000000000
-      internalID: -285017172600918862
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Shoot_12
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b49cef8c623355030800000000000000
-      internalID: 3482746128514861387
+      spriteID: 14f004a72b7209d40800000000000000
+      internalID: 5589010785075466049
       vertices: []
       indices: 
       edges: []
@@ -424,7 +424,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: fb5df95287e4f4145b6baaeeff1c0c34
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -432,19 +432,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player_Shoot_0: -7169371653411447740
-      Player_Shoot_1: 998706065937494223
-      Player_Shoot_10: 4903747820284936165
-      Player_Shoot_11: -285017172600918862
-      Player_Shoot_12: 3482746128514861387
-      Player_Shoot_2: 3218591608074427183
-      Player_Shoot_3: 7069005636327514907
-      Player_Shoot_4: 5959281240547110345
-      Player_Shoot_5: -4504545249797230465
-      Player_Shoot_6: 1172409000749914668
-      Player_Shoot_7: 4588946715594402949
-      Player_Shoot_8: -2657296302270952974
-      Player_Shoot_9: 7609456078060246961
+      shuriken_anim_color_correct-Sheet_0: -4932435999581691959
+      shuriken_anim_color_correct-Sheet_1: -4725264115660029742
+      shuriken_anim_color_correct-Sheet_10: -208722957254955132
+      shuriken_anim_color_correct-Sheet_11: 4138857054070691178
+      shuriken_anim_color_correct-Sheet_12: 5589010785075466049
+      shuriken_anim_color_correct-Sheet_2: 328053910508773174
+      shuriken_anim_color_correct-Sheet_3: -1565644341816042682
+      shuriken_anim_color_correct-Sheet_4: -7663668941121203094
+      shuriken_anim_color_correct-Sheet_5: -1442043882736023991
+      shuriken_anim_color_correct-Sheet_6: -5370740074484819373
+      shuriken_anim_color_correct-Sheet_7: 4987843383844123689
+      shuriken_anim_color_correct-Sheet_8: 8490115338393464018
+      shuriken_anim_color_correct-Sheet_9: 1436514249579432162
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
