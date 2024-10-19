@@ -11,7 +11,6 @@ public class SniperAI : EnemyAI
         if (Vector2.Distance(player.position, transform.position) > attackRange)
         {
             // Atira no jogador
-            Debug.Log(1);
             ShootProjectile();
         }
         else

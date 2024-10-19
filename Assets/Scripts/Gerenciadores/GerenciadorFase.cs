@@ -57,7 +57,6 @@ public class GerenciadorFase : MonoBehaviour
         
         if (target != null)
         {
-            Debug.Log(target.Nota);
             if (target.Nota == currentTarget)
             {
                 return true;
@@ -78,7 +77,6 @@ public class GerenciadorFase : MonoBehaviour
 
     public bool ValidateLastEnemy(EnemyControler target)
     {
-        Debug.Log(currentIndex + " - "+ targetList.Count);
         if (currentIndex >= targetList.Count - 1)
         {
             HandleWin(target);
@@ -135,7 +133,6 @@ public class GerenciadorFase : MonoBehaviour
     public void HandleWin(EnemyControler target)
     {
         Camera mainCamera = Camera.main;
-        Debug.Log(mainCamera);
         if (mainCamera != null)
         {
             Vector3 originalPosition = mainCamera.transform.position;
@@ -188,7 +185,6 @@ public class GerenciadorFase : MonoBehaviour
                     haveEnemy = true;
                 }
             }
-            Debug.Log(haveEnemy);
             if (haveEnemy)
             {
               

@@ -9,8 +9,17 @@ public class LifeControler : MonoBehaviour
     public GerenciadorFase lvlControler;
     private GameObject player;
 
+    public Sprite deadSprite; // O sprite que será trocado ao morrer
+    private Collider2D col;
+    private Rigidbody2D rb;
+    private SpriteRenderer spriteRenderer;
+
+
     private void Start()
     {
+        col = GetComponent<Collider2D>();
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
 
         lvlControler = FindFirstObjectByType<GerenciadorFase>();
@@ -29,7 +38,14 @@ public class LifeControler : MonoBehaviour
 
     public void HandleDeath()
     {
-        Destroy(gameObject);
+        if (col != null)
+            col.enabled = false;
+        if (rb != null)
+            rb.simulated = false;
+
+        // Trocar o sprite
+        if (deadSprite != null && spriteRenderer != null)
+            spriteRenderer.sprite = deadSprite;
     }
 
     public void ValidateDmgTypeByTarget(bool isTeleport, int dmg)
@@ -47,7 +63,7 @@ public class LifeControler : MonoBehaviour
                 if (isValid)
                 {
                     bool isLastEnemy = lvlControler.ValidateLastEnemy(enemy);
-                    Debug.Log(isLastEnemy + " - é o ultimo?");
+
                     if (!isLastEnemy)
                     {
                         HandleDamege(999);
