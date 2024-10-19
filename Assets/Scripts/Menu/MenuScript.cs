@@ -19,7 +19,7 @@ public class MenuScript : MonoBehaviour
 
     public void GoToGame()
     {
-        SceneManager.LoadScene("Dev_Gerenciador");
+        SceneManager.LoadScene("Lvl_1");
         FindFirstObjectByType<MusicControler>().PlayMusic(MusicControler.GameState.InGame);
     }
     public void GoToOpcoes()

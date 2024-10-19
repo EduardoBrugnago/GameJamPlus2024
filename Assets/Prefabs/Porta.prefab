@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   lvlControler: {fileID: 0}
+  deadSprite: {fileID: 4638043003672056620, guid: 17d760b1a55350b46bad18e205f54cba, type: 3}

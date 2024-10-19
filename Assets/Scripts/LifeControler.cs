@@ -46,6 +46,7 @@ public class LifeControler : MonoBehaviour
         // Trocar o sprite
         if (deadSprite != null && spriteRenderer != null)
             spriteRenderer.sprite = deadSprite;
+            spriteRenderer.sortingOrder = 1;
     }
 
     public void ValidateDmgTypeByTarget(bool isTeleport, int dmg)
