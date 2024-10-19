@@ -60,7 +60,7 @@ public class Teleporter : MonoBehaviour
                         LifeControler life = collision.gameObject.GetComponent<LifeControler>();
                         if (life != null)
                         {
-                            life.HandleDamege(9999);
+                            life.ValidateDmgTypeByTarget(true, 9999);
                         }
 
                         PlayerController playerController = player.GetComponent<PlayerController>();

@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;          // Referência ao Rigidbody2D do player
     public Camera cam;              // Referência à câmera principal
 
+    public bool onAction = false;
     Vector2 movement;               // Vetor de movimentação
     Vector2 mousePos;               // Posição do mouse
     Vector2 aimDirection;           // Direção da mira usando controle
@@ -20,6 +21,9 @@ public class PlayerController : MonoBehaviour
     public Slider timerBar;
 
     private Transform circleTransform;
+    public SpriteRenderer feedbackTarget;
+
+    public ResetInterface resetInterface;
 
     void Awake()
     {
@@ -43,26 +47,36 @@ public class PlayerController : MonoBehaviour
         }
 
         circleTransform = transform.Find("Circle");
+
+        GameObject resetCanvas = GameObject.FindGameObjectWithTag("Reset");
+        if(resetCanvas != null)
+        {
+            resetInterface = resetCanvas.GetComponent<ResetInterface>();
+        }
     }
 
     void Update()
     {
         // Movimentação usando teclado ou controle
-        movement.x = Input.GetAxisRaw("Horizontal");  // Eixo Horizontal (WASD, setas, ou stick analógico esquerdo)
-        movement.y = Input.GetAxisRaw("Vertical");    // Eixo Vertical
+        if (!onAction)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");  // Eixo Horizontal (WASD, setas, ou stick analógico esquerdo)
+            movement.y = Input.GetAxisRaw("Vertical");    // Eixo Vertical
 
-        // Captura da posição do mouse (para mira com mouse)
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            // Captura da posição do mouse (para mira com mouse)
+            mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        //// Mira com controle (stick analógico direito)
-        //float aimHorizontal = Input.GetAxis("RightStickX");
-        //float aimVertical = Input.GetAxis("RightStickY");
+            //// Mira com controle (stick analógico direito)
+            //float aimHorizontal = Input.GetAxis("RightStickX");
+            //float aimVertical = Input.GetAxis("RightStickY");
 
-        //// Se houver entrada no stick direito, define a direção de mira com controle
-        //if (Mathf.Abs(aimHorizontal) > 0.1f || Mathf.Abs(aimVertical) > 0.1f)
-        //{
-        //    aimDirection = new Vector2(aimHorizontal, aimVertical).normalized;
-        //}
+            //// Se houver entrada no stick direito, define a direção de mira com controle
+            //if (Mathf.Abs(aimHorizontal) > 0.1f || Mathf.Abs(aimVertical) > 0.1f)
+            //{
+            //    aimDirection = new Vector2(aimHorizontal, aimVertical).normalized;
+            //}
+
+        }
 
 
         HandleTimer();
@@ -70,35 +84,38 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        // Normaliza o vetor de movimento para garantir a mesma velocidade em todas as direções
-        if (movement.magnitude > 0)
+        if (!onAction)
         {
-            movement = movement.normalized;
-        }
+            if (movement.magnitude > 0)
+            {
+                movement = movement.normalized;
+            }
 
-        // Se não houver movimento, zerar a velocidade
-        if (movement.magnitude == 0)
-        {
-            rb.velocity = Vector2.zero;  // Zera a velocidade do Rigidbody2D para parar o movimento imediatamente
-        }
-        else
-        {
-            // Aplicar movimentação diretamente à posição
-            rb.velocity = movement * moveSpeed;
-        }
+            // Se não houver movimento, zerar a velocidade
+            if (movement.magnitude == 0)
+            {
+                rb.velocity = Vector2.zero;  // Zera a velocidade do Rigidbody2D para parar o movimento imediatamente
+            }
+            else
+            {
+                // Aplicar movimentação diretamente à posição
+                rb.velocity = movement * moveSpeed;
+            }
 
-        // Mira com o mouse (teclado + mouse)
-        Vector2 lookDir = mousePos - rb.position;
+            // Mira com o mouse (teclado + mouse)
+            Vector2 lookDir = mousePos - rb.position;
 
-        // Se está usando controle, sobrepõe a direção de mira
-        if (aimDirection.magnitude > 0.1f)
-        {
-            lookDir = aimDirection;
+            // Se está usando controle, sobrepõe a direção de mira
+            if (aimDirection.magnitude > 0.1f)
+            {
+                lookDir = aimDirection;
+            }
+
+            // Calcular o ângulo e aplicar rotação
+            float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+            circleTransform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
-
-        // Calcular o ângulo e aplicar rotação
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        circleTransform.rotation = Quaternion.Euler(0f, 0f, angle);
+       
     }
 
     public void HandleTimer()
@@ -123,6 +140,18 @@ public class PlayerController : MonoBehaviour
     }
     public void HandleDeath()
     {
+        if(resetInterface != null)
+        {
+            resetInterface.Reset();
+        } else
+        {
+            ResetScene();
+        }
+
+    }
+
+    public void ResetScene()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -133,6 +162,28 @@ public class PlayerController : MonoBehaviour
         {
             health = 0;
             HandleDeath();
+        }
+    }
+    
+    public void TargetHandler(TargetType target)
+    {
+        if(feedbackTarget != null)
+        {
+            switch (target)
+            {
+                case TargetType.Do:
+                    feedbackTarget.color = Color.red; // Cor para Nota 1
+                    break;
+                case TargetType.Re:
+                    feedbackTarget.color = Color.green; // Cor para Nota 2
+                    break;
+                case TargetType.Mi:
+                    feedbackTarget.color = Color.blue; // Cor para Nota 3
+                    break;
+                case TargetType.Fa:
+                    feedbackTarget.color = Color.yellow; // Cor para Nota 3
+                    break;
+            }
         }
     }
 }

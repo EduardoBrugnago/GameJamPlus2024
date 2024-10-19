@@ -7,9 +7,12 @@ public class LifeControler : MonoBehaviour
 {
     public int health = 2;
     public GerenciadorFase lvlControler;
+    private GameObject player;
 
-    public void Start()
+    private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+
         lvlControler = FindFirstObjectByType<GerenciadorFase>();
     }
 
@@ -26,11 +29,38 @@ public class LifeControler : MonoBehaviour
 
     public void HandleDeath()
     {
-        EnemyControler enemy = GetComponent<EnemyControler>();
-        if (enemy != null)
+            Destroy(gameObject);
+    }
+
+    public void ValidateDmgTypeByTarget(bool isTeleport, int dmg)
+    {
+        if(!isTeleport)
         {
-            lvlControler.ValidateTarget(enemy);
+            HandleDamege(dmg);
+        } else
+        {
+            EnemyControler enemy = GetComponent<EnemyControler>();
+            if (enemy != null)
+            {
+                bool isValid = lvlControler.ValidateTarget(enemy);
+                if (isValid)
+                {
+                    HandleDamege(999);
+                }
+                else
+                {
+                    PlayerController playerControl = player.GetComponent<PlayerController>();
+                    if (playerControl != null)
+                    {
+                        HandleDamege(999);
+                    }
+                }
+            }
+            else
+            {
+                HandleDamege(999);
+            }
         }
-        Destroy(gameObject);
+      
     }
 }

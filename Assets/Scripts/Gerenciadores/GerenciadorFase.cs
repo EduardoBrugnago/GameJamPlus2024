@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 public enum TargetType
 {
@@ -24,14 +25,26 @@ public class GerenciadorFase : MonoBehaviour
 
     private int comboHitNeeded = 3;
     private int totalHits = 0;
- 
+    private GameObject player;
+    public TextMeshProUGUI pointsDisplay;
+    public TextMeshProUGUI comboDisplay;
+
     void Start()
     {
-        Debug.Log(targetList);
+        player = GameObject.FindGameObjectWithTag("Player");
+
         enemyList.AddRange(FindObjectsByType<EnemyControler>(0));
         if(targetList.Count > 0)
         {
             currentTarget = targetList[0];
+            if(player != null)
+            {
+                PlayerController controlerPlayer = player.GetComponent<PlayerController>();
+                if(controlerPlayer != null)
+                {
+                    controlerPlayer.TargetHandler(currentTarget);
+                }
+            }
         }
         
 
@@ -83,14 +96,23 @@ public class GerenciadorFase : MonoBehaviour
 
         int pontosParaAdicionar = (int)Mathf.Pow(2, currentCombo);
         currentPoints += pontosParaAdicionar * targetPoints;
-
+        UpdateDisplays();
         ValidateNextTarget();
+    }
+
+    private void UpdateDisplays()
+    {
+        // Atualiza o texto do display de pontos
+        pointsDisplay.text = currentPoints.ToString();
+
+        // Atualiza o texto do display de combo
+        comboDisplay.text = currentCombo.ToString() + "x"; 
     }
 
     // Método para levar a falha
     private void HandleLoose()
     {
-        currentCombo = 0;
+        currentCombo = 1;
         totalHits = 0; 
     }
 
@@ -120,7 +142,16 @@ public class GerenciadorFase : MonoBehaviour
 
             if (haveEnemy)
             {
+              
                 currentTarget = proximaNota ;
+                if (player != null)
+                {
+                    PlayerController controlerPlayer = player.GetComponent<PlayerController>();
+                    if (controlerPlayer != null)
+                    {
+                        controlerPlayer.TargetHandler(currentTarget);
+                    }
+                }
             } else
             {
                 HandleLoose();

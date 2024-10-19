@@ -21,7 +21,7 @@ public class Projectile : MonoBehaviour
                         LifeControler life = collision.gameObject.GetComponent<LifeControler>();
                         if(life != null)
                         {
-                            life.HandleDamege(dmg);
+                            life.ValidateDmgTypeByTarget(false, dmg);
                         }
                     }
                 }

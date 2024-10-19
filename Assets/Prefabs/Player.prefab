@@ -119,6 +119,7 @@ MonoBehaviour:
   deathTimer: 15
   maxDeathTimer: 15
   timerBar: {fileID: 0}
+  feedbackTarget: {fileID: 8313286325252092199}
 --- !u!114 &2727438007985709992
 MonoBehaviour:
   m_ObjectHideFlags: 0
