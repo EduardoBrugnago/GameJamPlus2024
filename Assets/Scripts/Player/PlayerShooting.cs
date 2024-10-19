@@ -9,12 +9,16 @@ public class PlayerShooting : MonoBehaviour
     public int maxShots = 3;              // Número máximo de tiros antes do intervalo
     public float timeBetweenShots = 2f;   // Tempo entre cada tiro
 
-    private int shotsFired = 0;           // Contador de tiros disparados
-    private bool canShoot = true;         // Controle de tempo de disparo
+    public int shotsFired = 0;           // Contador de tiros disparados
+    public bool canShoot = true;         // Controle de tempo de disparo
 
     private Camera cam;
     private Vector2 mousePos;
     private Vector2 aimDirection;
+
+    public GameObject teleportPrefab;
+    public float teleportMaxDistance = 10f;
+    public float teleportSpeed = 10f;
 
     void Start()
     {
@@ -41,6 +45,12 @@ public class PlayerShooting : MonoBehaviour
         {
             canShoot = false;
             StartCoroutine(ShootCoroutine());
+        }
+
+        if (Input.GetButtonDown("Fire2") && canShoot)
+        {
+            canShoot = false;
+            Teleport();
         }
     }
 
@@ -70,6 +80,30 @@ public class PlayerShooting : MonoBehaviour
         // Adiciona velocidade ao projétil
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         rb.velocity = fireDirection * projectileSpeed;
+
+        // Ajusta a rotação do projétil para apontar na direção que está sendo disparado
+        float angle = Mathf.Atan2(fireDirection.y, fireDirection.x) * Mathf.Rad2Deg;
+        projectile.transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    void Teleport()
+    {
+        // Calcula a direção de mira
+        Vector2 fireDirection = (mousePos - (Vector2)firePoint.position).normalized;
+
+        // Se está usando controle, sobrepõe a direção de mira
+        if (aimDirection.magnitude > 0.1f)
+        {
+            fireDirection = aimDirection;
+        }
+
+
+        // Cria o projétil na posição do ponto de disparo e com a rotação correta
+        GameObject projectile = Instantiate(teleportPrefab, firePoint.position, Quaternion.identity);
+
+        // Adiciona velocidade ao projétil
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        rb.velocity = fireDirection * teleportSpeed;
 
         // Ajusta a rotação do projétil para apontar na direção que está sendo disparado
         float angle = Mathf.Atan2(fireDirection.y, fireDirection.x) * Mathf.Rad2Deg;

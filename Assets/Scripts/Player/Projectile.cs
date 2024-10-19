@@ -2,9 +2,32 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public int dmg = 1;
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Destrói o projétil quando colide com qualquer coisa
-        Destroy(gameObject);
+        if (!collision.gameObject.CompareTag("Player"))
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                PlayerShooting playerShooting = player.GetComponent<PlayerShooting>();
+                if (playerShooting != null)
+                {
+                    playerShooting.canShoot = true;
+
+                    if (collision.gameObject.CompareTag("Destructible") || collision.gameObject.CompareTag("Enemy"))
+                    {
+                        LifeControler life = collision.gameObject.GetComponent<LifeControler>();
+                        if(life != null)
+                        {
+                            life.HandleDamege(dmg);
+                        }
+                    }
+                }
+
+            }
+            Destroy(gameObject);
+        }
     }
 }

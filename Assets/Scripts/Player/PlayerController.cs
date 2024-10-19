@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +11,15 @@ public class PlayerController : MonoBehaviour
     Vector2 movement;               // Vetor de movimentação
     Vector2 mousePos;               // Posição do mouse
     Vector2 aimDirection;           // Direção da mira usando controle
+
+    public int health = 2;
+    public int maxHealth = 2;
+
+    public float deathTimer = 5f;
+    public float maxDeathTimer = 5f;
+    public Slider timerBar;
+
+    private Transform circleTransform;
 
     void Awake()
     {
@@ -30,6 +41,8 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogError("Câmera principal não encontrada.");
         }
+
+        circleTransform = transform.Find("Circle");
     }
 
     void Update()
@@ -50,6 +63,10 @@ public class PlayerController : MonoBehaviour
         //{
         //    aimDirection = new Vector2(aimHorizontal, aimVertical).normalized;
         //}
+
+
+        HandleTimer();
+
     }
     void FixedUpdate()
     {
@@ -81,6 +98,41 @@ public class PlayerController : MonoBehaviour
 
         // Calcular o ângulo e aplicar rotação
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        circleTransform.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
+
+    public void HandleTimer()
+    {
+        if (deathTimer > maxDeathTimer)
+        {
+            deathTimer = maxDeathTimer;
+        }
+
+        deathTimer -= Time.deltaTime;
+
+        if (timerBar != null)
+        {
+            timerBar.value = deathTimer / maxDeathTimer;
+        }
+
+        if (deathTimer <= 0)
+        {
+            HandleDeath();
+            deathTimer = maxDeathTimer;
+        }
+    }
+    public void HandleDeath()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void HandleDamege(int dmg)
+    {
+        health -= dmg;
+        if(health <= 0)
+        {
+            health = 0;
+            HandleDeath();
+        }
     }
 }
