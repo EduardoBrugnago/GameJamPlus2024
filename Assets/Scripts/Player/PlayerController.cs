@@ -48,11 +48,11 @@ public class PlayerController : MonoBehaviour
 
         circleTransform = transform.Find("Circle");
 
-        GameObject resetCanvas = GameObject.FindGameObjectWithTag("Reset");
-        if(resetCanvas != null)
-        {
-            resetInterface = resetCanvas.GetComponent<ResetInterface>();
-        }
+        //GameObject resetCanvas = GameObject.FindGameObjectWithTag("Reset");
+        //if (resetCanvas != null)
+        //{
+        //    resetInterface = resetCanvas.GetComponent<ResetInterface>();
+        //}
     }
 
     void Update()
@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        Debug.Log(onAction);
         if (!onAction)
         {
             if (movement.magnitude > 0)
@@ -115,7 +116,7 @@ public class PlayerController : MonoBehaviour
             float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
             circleTransform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
-       
+
     }
 
     public void HandleTimer()
@@ -140,10 +141,11 @@ public class PlayerController : MonoBehaviour
     }
     public void HandleDeath()
     {
-        if(resetInterface != null)
+        if (resetInterface != null)
         {
             resetInterface.Reset();
-        } else
+        }
+        else
         {
             ResetScene();
         }
@@ -158,16 +160,16 @@ public class PlayerController : MonoBehaviour
     public void HandleDamege(int dmg)
     {
         health -= dmg;
-        if(health <= 0)
+        if (health <= 0)
         {
             health = 0;
             HandleDeath();
         }
     }
-    
+
     public void TargetHandler(TargetType target)
     {
-        if(feedbackTarget != null)
+        if (feedbackTarget != null)
         {
             switch (target)
             {
