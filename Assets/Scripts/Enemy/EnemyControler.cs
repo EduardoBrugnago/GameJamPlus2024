@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyControler : MonoBehaviour
@@ -11,10 +9,7 @@ public class EnemyControler : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>(); // Obtém o componente SpriteRenderer
-
         HandleSprite();
-
-
     }
 
     private void HandleSprite()
@@ -42,6 +37,6 @@ public class EnemyControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
