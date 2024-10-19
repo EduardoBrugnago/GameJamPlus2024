@@ -17,7 +17,7 @@ public class ResetInterface : MonoBehaviour
 
     public bool interfaceOpen = false;
 
-    void Start()
+    void Awake()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
@@ -62,13 +62,13 @@ public class ResetInterface : MonoBehaviour
         {
             movimentControler.onAction = true;
         }
-        gameObject.SetActive(true);
+
         bgTransaction.gameObject.SetActive(true);
         float screenWidth = Screen.width;
         float startPositionX = screenWidth * 2.25f;
 
         bgTransaction.anchoredPosition = new Vector2(startPositionX, bgTransaction.anchoredPosition.y);
-
+        gameObject.SetActive(true);
         // Move bgTransaction para o centro do canvas
         DOVirtual.DelayedCall(0.5f,() => { bgTransaction.DOAnchorPosX(0, 1f).OnComplete(() =>
             {
@@ -102,12 +102,6 @@ public class ResetInterface : MonoBehaviour
             movimentControler.onAction = true;
         }
 
-        bgTransaction.gameObject.SetActive(true);
-        float screenWidth = Screen.width;
-        float startPositionX = screenWidth * 2.25f;
-
-        bgTransaction.anchoredPosition = new Vector2(startPositionX, bgTransaction.anchoredPosition.y);
-
         if (victoryText == null)
         {
             return;
@@ -118,24 +112,7 @@ public class ResetInterface : MonoBehaviour
 
         victoryText.DOFade(1, 1f).OnComplete(() =>
         {
-        Sequence mySequence = DOTween.Sequence();
-
-        mySequence.Join(victoryText.transform.DORotate(new Vector3(0, 0, 16f), 1.0f, RotateMode.FastBeyond360)
-        .SetLoops(1, LoopType.Yoyo)
-        .OnComplete(() =>
-        {
-            // Inicia a rotação adicional de -16f e 16f
-            victoryText.transform.DORotate(new Vector3(0, 0, -16f), 1.0f)
-                .OnComplete(() =>
-                {
-                    victoryText.transform.DORotate(new Vector3(0, 0, 16f), 1.0f); 
-                });
-            }));
-
-
-            // Animação de Zoom in e out
-            mySequence.Join(victoryText.transform.DOScale(1.01f, 1.0f).SetEase(Ease.OutQuad));
-            mySequence.AppendCallback(() =>
+            victoryText.DOFade(0, 1f).OnComplete(() =>
             {
                 if (movimentControler != null)
                 {
@@ -145,3 +122,5 @@ public class ResetInterface : MonoBehaviour
         });
     }
 }
+
+

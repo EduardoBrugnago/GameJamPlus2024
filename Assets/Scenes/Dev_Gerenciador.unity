@@ -297,7 +297,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 778708899342149753, guid: ffc1e623b20399242b075531bc2ddc17, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2257046914237914129, guid: ffc1e623b20399242b075531bc2ddc17, type: 3}
       propertyPath: m_IsActive
@@ -3264,6 +3264,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7163071291004967678, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
+      propertyPath: timerBar
+      value: 
+      objectReference: {fileID: 1750721238}
+    - target: {fileID: 7163071291004967678, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
       propertyPath: maxHealth
       value: 1
       objectReference: {fileID: 0}
@@ -3272,7 +3276,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1754903058}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3273985320110933090, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
