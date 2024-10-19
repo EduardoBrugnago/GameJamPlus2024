@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3991720618056745571}
   - component: {fileID: 7163071291004967678}
   - component: {fileID: 2727438007985709992}
+  - component: {fileID: 376769294377460097}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -114,12 +115,14 @@ MonoBehaviour:
   moveSpeed: 8
   rb: {fileID: 0}
   cam: {fileID: 0}
+  onAction: 0
   health: 2
   maxHealth: 2
   deathTimer: 15
   maxDeathTimer: 15
   timerBar: {fileID: 0}
   feedbackTarget: {fileID: 8313286325252092199}
+  resetInterface: {fileID: 0}
 --- !u!114 &2727438007985709992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +145,19 @@ MonoBehaviour:
   teleportPrefab: {fileID: 5207258290727726522, guid: 95c09d17e8a2e28438b058aeb3cb7fbd, type: 3}
   teleportMaxDistance: 25
   teleportSpeed: 30
+--- !u!114 &376769294377460097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4747740924444881742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdc5f8e2709fd0549bf09025422cbee5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  melee: {fileID: 8800732637694323925}
 --- !u!1 &5399184703305599954
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +270,7 @@ Transform:
   m_GameObject: {fileID: 5553398042824794350}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.20054336}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -414,13 +430,14 @@ GameObject:
   - component: {fileID: 3597227699330387691}
   - component: {fileID: 8313286325252092199}
   - component: {fileID: 1304481057700776418}
+  - component: {fileID: 2374245731357580158}
   m_Layer: 3
   m_Name: HitColider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3597227699330387691
 Transform:
   m_ObjectHideFlags: 0
@@ -430,7 +447,7 @@ Transform:
   m_GameObject: {fileID: 8800732637694323925}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: 0.016, y: 0.87, z: -0.20054336}
+  m_LocalPosition: {x: 0, y: 0.87, z: 0}
   m_LocalScale: {x: 1.768, y: 1.768, z: 1.768}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -540,3 +557,16 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.28866667}
       - {x: 0.5, y: -0.28866667}
   m_UseDelaunayMesh: 0
+--- !u!114 &2374245731357580158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8800732637694323925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb77f24ebf735664694d6083160c27f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1

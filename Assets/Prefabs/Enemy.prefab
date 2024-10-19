@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2928207940384525681
 Transform:
   m_ObjectHideFlags: 0
@@ -261,16 +261,17 @@ MonoBehaviour:
   currentState: 0
   player: {fileID: 0}
   visionRange: 10
-  attackRange: 2
+  attackRange: 3
   chaseSpeed: 3
   rotationSpeed: 5
-  alertTime: 0.74
+  alertTime: 0.5
   retreatRange: 15
   visionRadius: 5
   fieldOfViewAngle: 90
   obstacleMask:
     serializedVersion: 2
     m_Bits: 128
+  melee: {fileID: 3426188814001442883}
 --- !u!50 &1775476390061396396
 Rigidbody2D:
   serializedVersion: 4

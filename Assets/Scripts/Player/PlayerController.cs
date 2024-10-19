@@ -84,7 +84,6 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Debug.Log(onAction);
         if (!onAction)
         {
             if (movement.magnitude > 0)

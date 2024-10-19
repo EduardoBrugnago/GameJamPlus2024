@@ -17,6 +17,10 @@ public class EnemyAI : MonoBehaviour
     public float visionRadius = 5f;
     public float fieldOfViewAngle = 90f;
     public LayerMask obstacleMask;
+    public GameObject melee;
+    float atkDuration = 0.4f;
+    float atkTimer = 0f;
+    bool isAttacking = false;
 
     private Vector2 initialPosition;
     private Seeker seeker;
@@ -150,7 +154,24 @@ public class EnemyAI : MonoBehaviour
 
         if (Vector2.Distance(player.position, transform.position) > attackRange)
         {
+            Debug.Log(1);
             currentState = EnemyState.Perseguicao;
+        }
+        else
+        {
+            StartCoroutine(DoAttack());
+        }
+    }
+
+    IEnumerator DoAttack()
+    {
+        if (!isAttacking)
+        {
+            melee.SetActive(true);
+            isAttacking = true;
+            yield return new WaitForSeconds(atkDuration);
+            isAttacking = false;
+            melee.SetActive(false);
         }
     }
 

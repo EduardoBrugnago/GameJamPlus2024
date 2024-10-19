@@ -300,18 +300,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3290667636452578489, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3597227699330387691, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3597227699330387691, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4747740924444881742, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
       propertyPath: m_Name
       value: Player
@@ -319,50 +307,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4747740924444881742, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 568617104}
-    - targetCorrespondingSourceObject: {fileID: 8800732637694323925, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 565523601}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
---- !u!1 &565523597 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8800732637694323925, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
-  m_PrefabInstance: {fileID: 502151757}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &565523601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 565523597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb77f24ebf735664694d6083160c27f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
---- !u!1 &568617098 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4747740924444881742, guid: 892cac31c4fc8c14d85442fb326608ca, type: 3}
-  m_PrefabInstance: {fileID: 502151757}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &568617104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568617098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdc5f8e2709fd0549bf09025422cbee5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  melee: {fileID: 565523597}
 --- !u!1 &1696197635
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACwn+sJDWlnXgIAABQFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzk0GEyCmt9YQ0gMJE9LJxRdhrbEGWfLog49k+O9dyTZ26fSEeO/t7tvVyl+ES1NBZpVeas5WigH5PiD+TL4NOvIZTnSn5IZ/Qqv54MwWXkSD5o1arhCPfJhRJVjNsx9yJ7x4iKCTPFe6XLAdJMpYg3BOhQGktLI+WiL0NSAn/Lmb+ZAznkaP/vSJp9lwcMFjBtKC7qStsJXVKiczQcsKmLfciUfjRh09BpnEZhqFN54pIbhpnBB7rkKnCa2Mwz5QwDjFzkL56H6CQAF8V1ifuR/+mucGbGNK0/OcaxxRnZf8VPXcSmr2tbMDFS5YGMXBVZ109Q9/FwU616p8butGQ1/DFjzbv9FzRo3tDbYPz3vWw4COVOzpVsBHAfJFLbVykiFptfOhzsBo3v29tpYUkO07vLZ6A7rq/9fje7iE7k+J4OXWU/fjGtgIFSYeLh803s0vNBxWwzQpEPUufht4p7v+DjXEE9fGItV0Kb29rXLaS8kizMx342yitIQAN6YrkFTY8xrT2NsrvOF6ZW+YJ+pfS1O84dpHcBMS4E4/HN5Qa3W8XpYp1HEFpnh1VnAJnWlPvOCcEiVlvWH9mbRhG6dzmvXCdo6zv1eLPMRsFk9hEsV0Ossf8jvYbscPM0aHk2kcbeOYhN3jEvukYl0bbcaDtya75BL3rP2IDJaaVmHbmabHJf8sVW/kXOZqk2kA+VpnuBoHjUXwXbIF4zigDVjLZbhv8pUSobI9sPSaKA2dLk5W07TLkpKKH5T1SEqS8NVIiYevu7zWcOBw9MXbZBdy+QNQSwMEFAAACAgAALCf67Etu0VtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tJKxRYqlhVmqqaFFopllmnGabmpSkomxZUqigamZhWGShYVSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAALCf6wkNaWdeAgAAFAUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAALCf67Etu0VtAAAAeAAAAAkAJAAAAAAAAAAAAAAAqwIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABjAwAAAAA=
+    dataString: UEsDBBQAAAgIAACwn+tuqLR3XAIAABUFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMziWDgSSmt9YQ0kMCE9rJxRdhrbEGWfLoI3xk+O9dyTZ26eSEePt29d7uyp+ES1NBZpVeas5eFAPyfUD8mXwbdMFnONKdkht+hpbzzpktPIkGzhu1XCEe+TSjSrCaZz/kTnjyCEEnea50uWA7SJSxBuGcCgMY0sr6bInQ54Ac8Wc48yknPI0f/emMp9locMFjBtKC7qgtsaXVLCczQcsKmJfckcfThh09BppEMw3DC8+UENw0Sog9VcFpQivj0AcSGKfoLFwf3d0jUADfFdZX7qev8tyAbURpeppzjS2q65Kfqu5bSc2+VvZBhQsSxnFQVRd9+S8+jEI416p8bu+NRv4OW/Bs/0ZPGTW219g+PO9JDw06ULGnWwHvBchXtdTKSYZBq51PdQbG8+7v1VpSQLbv8FrqDeiqr8fjPVyC+2MieLn1obtpDWyECh0PwweNs/mFgsNqmKYEol7FHwO/6a6/Q03giWtjMdS4lF7eVjntqWQReubdOJsoLUH3K1QgqbCnNdaxtzO8iX2d9UT9c2lub2LtK7hJCXDHH41uQmt1uE7LFOrwAqZYOSu4hK7VPvCKjUqUlPWK9S21aRunc5r10naOs393i0xiNosf4D6K6cMsn+RD2G6nkxmjo/uHONrGMQnLxyX6pGJdC23ag2OTXXGJi9Z+RQZLTauw7kzTw5KfS2U6Jpe52mQaQK7qClfhoPESfJhswTg2aAPWchkGTj5TIlS2B5ZeC6XB6eJoNU27Kimp+IeyHklJEj4bKfHwdZnXGj44HPzlbbELufwFUEsDBBQAAAgIAACwn+uxLbtFbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrSSsUWKpYVZqqmhRaKZZZpxmm5qUpKJsWVKooGpmYVhkoWFUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACwn+tuqLR3XAIAABUFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACwn+uxLbtFbQAAAHgAAAAJACQAAAAAAAAAAAAAAKkCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAYQMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -407,7 +353,7 @@ MonoBehaviour:
   manualDebugFloorRoof: 0
   showSearchTree: 0
   unwalkableNodeDebugSize: 0.3
-  logPathResults: 1
+  logPathResults: 4
   maxNearestNodeDistance: 100
   scanOnStartup: 1
   fullGetNearestSearch: 0
@@ -458,7 +404,7 @@ MonoBehaviour:
   heuristic: 2
   heuristicScale: 1
   threadCount: 1
-  maxFrameTime: 1
+  maxFrameTime: 10
   batchGraphUpdates: 0
   graphUpdateBatchingInterval: 0.2
   euclideanEmbedding:
