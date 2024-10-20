@@ -128,6 +128,7 @@ public class LifeControler : MonoBehaviour
                         HandleDamege(999);
                     } else
                     {
+                        HandleDamege(999);
                         lvlControler.HandleWin(enemy);
                     }
                     

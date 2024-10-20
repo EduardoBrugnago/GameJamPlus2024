@@ -48,6 +48,11 @@ public class ResetInterface : MonoBehaviour
         if (!firstLoad)
         {
             startContainer.gameObject.SetActive(true);
+            UISpriteAnimation anim = startContainer.GetComponent<UISpriteAnimation>();
+            if (anim != null)
+            {
+                anim.Func_PlayUIAnim();
+            }
             startContainer.alpha = 0; // Garantindo que comece invisível
             startText.text = "LIGHTS!";
             startContainer.DOFade(1, 0.5f).OnComplete(() =>
@@ -97,6 +102,7 @@ public class ResetInterface : MonoBehaviour
     }
     public void Reset(string msg)
     {
+        Debug.Log(movimentControler + "  - " + msg);
         if (movimentControler != null)
         {
             movimentControler.onAction = true;
@@ -115,6 +121,11 @@ public class ResetInterface : MonoBehaviour
             {
                 // Ativa textTime e faz o fade in
                 resetTime.gameObject.SetActive(true);
+                UISpriteAnimation anim = resetTime.GetComponent<UISpriteAnimation>();
+                if (anim != null)
+                {
+                    anim.Func_PlayUIAnim();
+                }
                 resetTime.alpha = 0; // Garantindo que comece invisível
                 resetTime.DOFade(1, 1f).OnComplete(() =>
                 {
@@ -150,6 +161,11 @@ public class ResetInterface : MonoBehaviour
 
         victoryText.alpha = 0;
         victoryText.gameObject.SetActive(true);
+        UISpriteAnimation anim = victoryText.GetComponent<UISpriteAnimation>();
+        if (anim != null)
+        {
+            anim.Func_PlayUIAnim();
+        }
         FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.End);
         victoryText.DOFade(1, 1f).OnComplete(() =>
         {

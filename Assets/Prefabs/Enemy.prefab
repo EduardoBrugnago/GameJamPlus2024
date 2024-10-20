@@ -275,7 +275,7 @@ MonoBehaviour:
     m_Bits: 128
   melee: {fileID: 3426188814001442883}
   atkDuration: 0.6
-  atkDelay: 0.5
+  atkDelay: 0.3
   animator: {fileID: 0}
   initialPosition: {x: 0, y: 0}
   seeker: {fileID: 0}

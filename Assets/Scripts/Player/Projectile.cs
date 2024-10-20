@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public int dmg = 1;
+    public int dmg = 99;
     public GameObject parent = null;
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -12,27 +12,15 @@ public class Projectile : MonoBehaviour
         {
             return;
         }
-        if (!collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
+            PlayerController playerC = collision.gameObject.GetComponent<PlayerController>();
+            if (playerC != null)
             {
-                PlayerShooting playerShooting = player.GetComponent<PlayerShooting>();
-                if (playerShooting != null)
-                {
-                    playerShooting.canShoot = true;
-
-                    if (collision.gameObject.CompareTag("Destructible") || collision.gameObject.CompareTag("Enemy"))
-                    {
-                        LifeControler life = collision.gameObject.GetComponent<LifeControler>();
-                        if (life != null)
-                        {
-                            life.ValidateDmgTypeByTarget(false, dmg, null);
-                        }
-                    }
-                }
+                playerC.HandleDamege(dmg);
 
             }
+
             Destroy(gameObject);
         }
     }

@@ -20,10 +20,12 @@ public class PlayerShooting : MonoBehaviour
     public float teleportMaxDistance = 10f;
     public float teleportSpeed = 10f;
     PlayerController controlerPlayer;
+    public GerenciadorFase gerenciadorFase;
     void Start()
     {
         controlerPlayer = GetComponent<PlayerController>();
         cam = Camera.main;
+        gerenciadorFase  = FindFirstObjectByType<GerenciadorFase>();
     }
 
     void Update()
@@ -47,8 +49,12 @@ public class PlayerShooting : MonoBehaviour
 
                 // Se clicar com o mouse ou pressionar o botão de tiro, tenta atirar
 
-                if (Input.GetButtonDown("Fire2") && canShoot)
+                if (Input.GetButtonDown("Fire1") && canShoot)
                 {
+                    if(gerenciadorFase != null)
+                    {
+                        gerenciadorFase.CancelSlowmotion();
+                    }
                     GetComponent<PlayerController>().animator.Play("PShoot");
                     canShoot = false;
                     Teleport();
