@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class ControlerLevels : MonoBehaviour
 {
     private static ControlerLevels instance;
-    public string[] scenes = { "Lvl_1", "Lvl_2", "Lvl_3", "Finish" }; // Adicione os nomes das suas cenas aqui
+    public string[] scenes = { "Lvl_1", "Finish", "Lvl_2", "Lvl_3" }; // Adicione os nomes das suas cenas aqui
     public int currentSceneIndex = 0;
     public bool firstLoad = false;
 
