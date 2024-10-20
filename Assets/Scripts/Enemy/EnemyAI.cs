@@ -22,14 +22,19 @@ public class EnemyAI : MonoBehaviour
     public float atkDelay = 1.0f;
     float atkTimer = 0f;
     bool isAttacking = false;
-
-    private Vector2 initialPosition;
-    private Seeker seeker;
-    private AIPath aiPath;
+    [HideInInspector]
+    public Animator animator;
+    [HideInInspector]
+    public Vector2 initialPosition;
+    [HideInInspector]
+    public Seeker seeker;
+    [HideInInspector]
+    public AIPath aiPath;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        animator = GetComponent<Animator>();
     }
     void Start()
     {
@@ -57,7 +62,7 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + rightBoundary * visionRadius);
     }
 
-    IEnumerator StateMachine()
+    public IEnumerator StateMachine()
     {
         while (true)
         {
@@ -127,7 +132,7 @@ public class EnemyAI : MonoBehaviour
         currentState = EnemyState.Perseguicao;
     }
 
-    IEnumerator ChasePlayer()
+    protected virtual IEnumerator ChasePlayer()
     {
         aiPath.canMove = true;
         aiPath.maxSpeed = chaseSpeed;
@@ -167,11 +172,16 @@ public class EnemyAI : MonoBehaviour
     {
         if (!isAttacking)
         {
-            if(melee != null)
+            if (melee != null)
             {
+                if (animator != null)
+                {
+                    animator.Play("Enemy_melee");
+                }
                 melee.SetActive(true);
+
             }
-           
+
             isAttacking = true;
             yield return new WaitForSeconds(atkDuration);
             isAttacking = false;
@@ -196,7 +206,7 @@ public class EnemyAI : MonoBehaviour
         currentState = EnemyState.Idle;
     }
 
-    void RotateTowards(Vector2 target)
+    public void RotateTowards(Vector2 target)
     {
         Vector2 direction = (target - (Vector2)transform.position).normalized;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;

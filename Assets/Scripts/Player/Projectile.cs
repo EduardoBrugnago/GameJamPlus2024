@@ -3,9 +3,15 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public int dmg = 1;
+    public GameObject parent = null;
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision);
+        if (parent == collision.gameObject)
+        {
+            return;
+        }
         if (!collision.gameObject.CompareTag("Player"))
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -19,7 +25,7 @@ public class Projectile : MonoBehaviour
                     if (collision.gameObject.CompareTag("Destructible") || collision.gameObject.CompareTag("Enemy"))
                     {
                         LifeControler life = collision.gameObject.GetComponent<LifeControler>();
-                        if(life != null)
+                        if (life != null)
                         {
                             life.ValidateDmgTypeByTarget(false, dmg, null);
                         }

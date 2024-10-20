@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         {
             HandleTimer();
         }
-        
+
 
     }
     void FixedUpdate()
