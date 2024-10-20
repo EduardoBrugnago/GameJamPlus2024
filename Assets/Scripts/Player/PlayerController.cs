@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public bool startTimer = false;
     private Transform circleTransform;
     public SpriteRenderer feedbackTarget;
-
+    public Image killColor;
     public ResetInterface resetInterface;
 
     void Awake()
@@ -181,15 +181,19 @@ public class PlayerController : MonoBehaviour
             {
                 case TargetType.Do:
                     feedbackTarget.color = Color.red; // Cor para Nota 1
+                    killColor.color = Color.red; // Cor para Nota 1
                     break;
                 case TargetType.Re:
                     feedbackTarget.color = Color.green; // Cor para Nota 2
+                    killColor.color = Color.green; // Cor para Nota 1
                     break;
                 case TargetType.Mi:
                     feedbackTarget.color = Color.blue; // Cor para Nota 3
+                    killColor.color = Color.blue; // Cor para Nota 1
                     break;
                 case TargetType.Fa:
                     feedbackTarget.color = Color.yellow; // Cor para Nota 3
+                    killColor.color = Color.yellow; // Cor para Nota 1
                     break;
             }
         }

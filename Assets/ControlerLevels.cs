@@ -30,6 +30,7 @@ public class ControlerLevels : MonoBehaviour
         currentSceneIndex++;
         if (currentSceneIndex >= scenes.Length)
         {
+            currentSceneIndex = 0;
             SceneManager.LoadScene("Menu");
             return; 
         }
