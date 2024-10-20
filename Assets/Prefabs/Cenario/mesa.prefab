@@ -149,3 +149,4 @@ MonoBehaviour:
   health: 2
   lvlControler: {fileID: 0}
   deadSprite: {fileID: -1286162751, guid: fcdf3b7c8e513c74fa149f69139c6d1c, type: 3}
+  Explosion: {fileID: 0}

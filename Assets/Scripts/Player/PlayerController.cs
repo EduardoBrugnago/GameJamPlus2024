@@ -78,13 +78,13 @@ public class PlayerController : MonoBehaviour
             //{
             //    aimDirection = new Vector2(aimHorizontal, aimVertical).normalized;
             //}
-
+            if (startTimer)
+            {
+                HandleTimer();
+            }
         }
 
-        if (startTimer)
-        {
-            HandleTimer();
-        }
+        
 
 
     }

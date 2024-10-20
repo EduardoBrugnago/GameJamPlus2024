@@ -263,7 +263,7 @@ MonoBehaviour:
   currentState: 0
   player: {fileID: 0}
   visionRange: 8
-  attackRange: 3
+  attackRange: 2
   chaseSpeed: 8
   rotationSpeed: 6
   alertTime: 0.01
@@ -275,7 +275,7 @@ MonoBehaviour:
     m_Bits: 128
   melee: {fileID: 3426188814001442883}
   atkDuration: 0.6
-  atkDelay: 1.2
+  atkDelay: 0.5
   animator: {fileID: 0}
   initialPosition: {x: 0, y: 0}
   seeker: {fileID: 0}
@@ -427,7 +427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   lvlControler: {fileID: 0}
-  deadSprite: {fileID: 5040738657099314932, guid: 17d760b1a55350b46bad18e205f54cba, type: 3}
+  deadSprite: {fileID: 21300000, guid: 8218b0679a9087944a408315848d8cb4, type: 3}
   Explosion: {fileID: 2497000147105039519, guid: ccd8d619918b8374bb793382bc2c4487, type: 3}
 --- !u!114 &4327677413125578347
 MonoBehaviour:

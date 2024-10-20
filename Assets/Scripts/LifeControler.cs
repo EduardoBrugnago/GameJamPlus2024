@@ -13,7 +13,7 @@ public class LifeControler : MonoBehaviour
     private Collider2D col;
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
-
+    private Animator animationRenderer;
     private Vector2 forceDirection;
     private bool shouldMove = false;
     private GameObject objectToMove;
@@ -49,6 +49,7 @@ public class LifeControler : MonoBehaviour
     {
         col = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
+        animationRenderer = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
 
@@ -73,10 +74,22 @@ public class LifeControler : MonoBehaviour
         if (rb != null)
             rb.simulated = false;
 
-        if(Explosion != null)
+        if (animationRenderer != null)
+        {
+            EnemyAI iaEnemy = GetComponent<EnemyAI>();
+            if (iaEnemy != null)
+            {
+                animationRenderer.enabled = false;
+                iaEnemy.currentState = EnemyAI.EnemyState.Dead;
+                spriteRenderer.color = Color.white;
+            }
+        }
+
+        if (Explosion != null)
         {
             GameObject GO = Instantiate(Explosion, transform.position, Quaternion.identity);
             Destroy(GO, 1f);
+            
         }
         // Trocar o sprite
         if (deadSprite != null && spriteRenderer != null)

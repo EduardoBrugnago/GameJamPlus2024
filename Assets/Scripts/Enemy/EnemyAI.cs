@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
-    public enum EnemyState { Idle, Alerta, Perseguicao, Ataque, Recuo }
+    public enum EnemyState { Idle, Alerta, Perseguicao, Ataque, Recuo, Dead }
     public EnemyState currentState = EnemyState.Idle;
 
     public Transform player;
@@ -87,11 +87,15 @@ public class EnemyAI : MonoBehaviour
                 case EnemyState.Recuo:
                     yield return StartCoroutine(Retreat());
                     break;
+                case EnemyState.Dead:
+                    animator.enabled = false;
+                    yield return null;
+                    break;
             }
             yield return null;
         }
     }
-
+    
     void Idle()
     {
         if (PlayerInSight())
@@ -162,7 +166,7 @@ public class EnemyAI : MonoBehaviour
         {
             currentState = EnemyState.Perseguicao;
         }
-        else
+        else if(animator.enabled)
         {
             StartCoroutine(DoAttack());
         }
@@ -174,7 +178,7 @@ public class EnemyAI : MonoBehaviour
         {
             if (melee != null)
             {
-                if (animator != null)
+                if (animator != null && animator.enabled)
                 {
                     animator.Play("Enemy_melee");
                 }
