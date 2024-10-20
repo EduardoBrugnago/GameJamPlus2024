@@ -4353,7 +4353,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTarget: 1
   currentIndex: 0
-  targetList: 010000000200000001000000030000000400000001000000
+  targetList: 0100000002000000030000000400000001000000
   enemyList: []
   currentCombo: 1
   currentPoints: 0
