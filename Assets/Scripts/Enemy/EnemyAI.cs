@@ -167,11 +167,18 @@ public class EnemyAI : MonoBehaviour
     {
         if (!isAttacking)
         {
-            melee.SetActive(true);
+            if(melee != null)
+            {
+                melee.SetActive(true);
+            }
+           
             isAttacking = true;
             yield return new WaitForSeconds(atkDuration);
             isAttacking = false;
-            melee.SetActive(false);
+            if (melee != null)
+            {
+                melee.SetActive(false);
+            }
         }
     }
 

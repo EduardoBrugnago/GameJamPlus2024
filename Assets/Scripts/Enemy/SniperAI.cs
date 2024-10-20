@@ -8,6 +8,7 @@ public class SniperAI : EnemyAI
 
     protected override IEnumerator Attack()
     {
+        Debug.Log(Vector2.Distance(player.position, transform.position) + " - " + attackRange);
         if (Vector2.Distance(player.position, transform.position) > attackRange)
         {
             // Atira no jogador
@@ -19,7 +20,7 @@ public class SniperAI : EnemyAI
             Debug.Log("Sniper atacando corpo a corpo!");
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         // Volta para a perseguição
         currentState = EnemyState.Perseguicao;
@@ -27,6 +28,7 @@ public class SniperAI : EnemyAI
 
     void ShootProjectile()
     {
+        Debug.Log("KRL");
         Vector2 fireDirection = (player.position - transform.position).normalized;
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         projectile.GetComponent<Rigidbody2D>().velocity = fireDirection * projectileSpeed;

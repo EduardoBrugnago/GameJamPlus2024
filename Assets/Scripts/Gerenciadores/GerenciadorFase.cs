@@ -32,7 +32,7 @@ public class GerenciadorFase : MonoBehaviour
     public GameObject Ui_State;
 
     public float slowdownFactor = 0.05f;
-    public float slowdownLength = 2f;
+    public float slowdownLength = 3f;
     public float oldF;
     public float olfL;
 
@@ -41,15 +41,15 @@ public class GerenciadorFase : MonoBehaviour
         CancelSlowmotion();
         
         Time.timeScale = slowdownFactor;
-        Time.fixedDeltaTime = Time.timeScale * .02f;
+        Time.fixedDeltaTime = Time.timeScale * .03f;
 
-        Invoke("CancelSlowmotion", 0.1f);
+        Invoke("CancelSlowmotion", 0.08f);
     }
 
     IEnumerator SlowmotionTimer()
     {
         Debug.Log("CCC");
-        yield return new WaitForSeconds(0.1f); // Espera por 1 segundo
+        yield return new WaitForSeconds(0.08f); // Espera por 1 segundo
         Debug.Log("EEE");
         CancelSlowmotion();
     }
@@ -112,7 +112,6 @@ public class GerenciadorFase : MonoBehaviour
     {
         if (currentIndex >= targetList.Count - 1)
         {
-            HandleWin(target);
             return true;
         }
         else

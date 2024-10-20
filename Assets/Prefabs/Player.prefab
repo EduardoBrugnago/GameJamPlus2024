@@ -125,6 +125,7 @@ MonoBehaviour:
   deathTimer: 15
   maxDeathTimer: 15
   timerBar: {fileID: 0}
+  startTimer: 0
   feedbackTarget: {fileID: 1792481953649607605}
   resetInterface: {fileID: 0}
 --- !u!114 &2727438007985709992
@@ -277,6 +278,8 @@ MonoBehaviour:
   TeleportSfx: {fileID: 8300000, guid: 300b22c34e497c944819e1e178be01e2, type: 3}
   DeathSfx: {fileID: 8300000, guid: 300b22c34e497c944819e1e178be01e2, type: 3}
   TeleportTwoSfx: {fileID: 8300000, guid: 0b33a3c988382af4b9cc43a8ec987363, type: 3}
+  StartSfx: {fileID: 8300000, guid: a853f213aae23f34e8bb6bf95c81617c, type: 3}
+  AssSfx: {fileID: 8300000, guid: 25c935a1a53fd224588e065cabc16319, type: 3}
   GlassSfx:
   - {fileID: 8300000, guid: cfe7cc976cacfd44bae254012d2a2777, type: 3}
   - {fileID: 8300000, guid: 49eafa4b91c763c42bd6b0ddf1607e3b, type: 3}

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerSounds : MonoBehaviour
 {
-    public enum SfxState { Trow, Dmg, Teleport, Death, Teleport2, Glass }
+    public enum SfxState { Trow, Dmg, Teleport, Death, Teleport2, Glass,Start, End }
     public SfxState currentState;
 
     // Referências às músicas para cada estado
@@ -13,6 +14,8 @@ public class PlayerSounds : MonoBehaviour
     public AudioClip TeleportSfx;
     public AudioClip DeathSfx;
     public AudioClip TeleportTwoSfx;
+    public AudioClip StartSfx;
+    public AudioClip AssSfx;
     public List<AudioClip> GlassSfx;
     private AudioSource audioSource;
 
@@ -61,6 +64,12 @@ public class PlayerSounds : MonoBehaviour
                     int randomIndex = Random.Range(0, GlassSfx.Count);
                     audioSource.clip = GlassSfx[randomIndex];
                 }
+                break;
+            case SfxState.Start:
+                audioSource.clip = StartSfx;
+                break;
+            case SfxState.End:
+                audioSource.clip = AssSfx;
                 break;
         }
 

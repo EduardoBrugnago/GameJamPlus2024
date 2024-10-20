@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public float deathTimer = 5f;
     public float maxDeathTimer = 5f;
     public Slider timerBar;
-
+    public bool startTimer = false;
     private Transform circleTransform;
     public SpriteRenderer feedbackTarget;
 
@@ -81,8 +81,11 @@ public class PlayerController : MonoBehaviour
 
         }
 
-
-        HandleTimer();
+        if (startTimer)
+        {
+            HandleTimer();
+        }
+        
 
     }
     void FixedUpdate()

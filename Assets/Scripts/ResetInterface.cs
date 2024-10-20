@@ -15,6 +15,8 @@ public class ResetInterface : MonoBehaviour
 
     public CanvasGroup victoryText;
 
+    public CanvasGroup startContainer;
+    public TextMeshProUGUI startText;
     public bool interfaceOpen = false;
 
     void Awake()
@@ -32,35 +34,72 @@ public class ResetInterface : MonoBehaviour
  
     public void OnLoadScene()
     {
-        if(movimentControler != null)
+        if (movimentControler != null)
         {
             movimentControler.onAction = true;
         }
-        
+
         resetTime.gameObject.SetActive(false);
         resetTime.alpha = 0;
-        bgTransaction.gameObject.SetActive(true);
-        float screenWidth = Screen.width;
-        float endPositionX = -(screenWidth * 2.25f);
-  
-        bgTransaction.DOAnchorPosX(endPositionX, 1f).OnComplete(() =>
+
+        bool firstLoad = FindFirstObjectByType<ControlerLevels>().firstLoad;
+        Debug.Log(firstLoad);
+        if (!firstLoad)
         {
-            if (bgTransaction != null)
+            startContainer.gameObject.SetActive(true);
+            startContainer.alpha = 0; // Garantindo que comece invisível
+            startText.text = "LIGHTS!";
+            startContainer.DOFade(1, 0.5f).OnComplete(() =>
             {
-                bgTransaction.anchoredPosition = new Vector2(Screen.width, bgTransaction.anchoredPosition.y);
-            }
-            bgTransaction.gameObject.SetActive(false);
-            if (movimentControler != null)
+                Sequence mySequence = DOTween.Sequence();
+                FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Start);
+                mySequence.Append(startText.DOFade(0, 1f)) // Esconde o texto
+               .AppendCallback(() => startText.text = "CAMERA!") // Troca o texto
+               .Append(startText.DOFade(1, 1f)) // Faz aparecer
+               .Append(startText.DOFade(0, 0.75f)) // Esconde o texto
+               .AppendCallback(() => startText.text = "ACTION!") // Troca o texto
+               .Append(startText.DOFade(1, 0.75f)).Append(startText.DOFade(0, 0.75f)).AppendCallback(() =>
+               {
+                   startContainer.gameObject.SetActive(false);
+                   bgTransaction.gameObject.SetActive(false);
+                   FindFirstObjectByType<ControlerLevels>().firstLoad = true;
+                   if (movimentControler != null)
+                   {
+                       movimentControler.onAction = false;
+                       movimentControler.startTimer = true;
+                   }
+               });
+
+            });
+        } else
+        {
+            bgTransaction.gameObject.SetActive(true);
+            float screenWidth = Screen.width;
+            float endPositionX = -(screenWidth * 2.25f);
+
+            bgTransaction.DOAnchorPosX(endPositionX, 1f).OnComplete(() =>
             {
-                movimentControler.onAction = false;
-            }
-        });
+                if (bgTransaction != null)
+                {
+                    bgTransaction.anchoredPosition = new Vector2(Screen.width, bgTransaction.anchoredPosition.y);
+                }
+                bgTransaction.gameObject.SetActive(false);
+                if (movimentControler != null)
+                {
+                    movimentControler.onAction = false;
+                    movimentControler.startTimer = true;
+                }
+                
+            });
+        }
+        
     }
     public void Reset()
     {
         if (movimentControler != null)
         {
             movimentControler.onAction = true;
+            movimentControler.startTimer = false;
         }
 
         bgTransaction.gameObject.SetActive(true);
@@ -109,14 +148,14 @@ public class ResetInterface : MonoBehaviour
 
         victoryText.alpha = 0;
         victoryText.gameObject.SetActive(true);
-
+        FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.End);
         victoryText.DOFade(1, 1f).OnComplete(() =>
         {
             victoryText.DOFade(0, 1f).OnComplete(() =>
             {
                 if (movimentControler != null)
                 {
-                    movimentControler.ResetScene();
+                    FindFirstObjectByType<ControlerLevels>().LoadNextScene();
                 }
             });
         });
