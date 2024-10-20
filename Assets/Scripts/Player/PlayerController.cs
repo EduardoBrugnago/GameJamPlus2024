@@ -165,12 +165,16 @@ public class PlayerController : MonoBehaviour
 
     public void HandleDamege(int dmg)
     {
-        health -= dmg;
-        if (health <= 0)
+        if (!onAction)
         {
-            health = 0;
-            HandleDeath();
+            health -= dmg;
+            if (health <= 0)
+            {
+                health = 0;
+                HandleDeath();
+            }
         }
+
     }
 
     public void TargetHandler(TargetType target)

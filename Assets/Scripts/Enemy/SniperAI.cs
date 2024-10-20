@@ -49,7 +49,18 @@ public class SniperAI : EnemyAI
             }
         }
 
-        currentState = EnemyState.Ataque;
+        LifeControler controlerE = GetComponent<LifeControler>();
+        if(controlerE != null)
+        {
+            if(controlerE.health > 0)
+            {
+                currentState = EnemyState.Ataque;
+            }
+        } else
+        {
+            currentState = EnemyState.Ataque;
+        }
+        
     }
 
     void ShootProjectile()

@@ -43,12 +43,12 @@ public class GerenciadorFase : MonoBehaviour
         Time.timeScale = slowdownFactor;
         Time.fixedDeltaTime = Time.timeScale * .03f;
 
-        Invoke("CancelSlowmotion", 0.08f);
+        Invoke("CancelSlowmotion", 0.1f);
     }
 
     IEnumerator SlowmotionTimer()
     {
-        yield return new WaitForSeconds(0.08f); // Espera por 1 segundo
+        yield return new WaitForSeconds(0.1f); // Espera por 1 segundo
         CancelSlowmotion();
     }
     public void CancelSlowmotion()

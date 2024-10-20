@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using DG.Tweening;
 
 public class Teleporter : MonoBehaviour
 {
@@ -69,6 +70,12 @@ public class Teleporter : MonoBehaviour
                         if (playerController != null)
                         {
                             playerController.deathTimer += 2f;
+                            playerController.timerBar.transform.DOScale(new Vector3(1.15f, 1.15f, 1.15f), 0.1f)
+                               .OnComplete(() =>
+                               {
+                                   // Volta ao tamanho original em 0.5 segundos
+                                   playerController.timerBar.transform.DOScale(new Vector3(1f, 1f, 1f), 0.5f);
+                               });
                         }
                     } else
                     {

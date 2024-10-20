@@ -102,11 +102,12 @@ public class ResetInterface : MonoBehaviour
             movimentControler.startTimer = false;
         }
 
-        bgTransaction.gameObject.SetActive(true);
+       
         float screenWidth = Screen.width;
         float startPositionX = screenWidth * 2.25f;
 
         bgTransaction.anchoredPosition = new Vector2(startPositionX, bgTransaction.anchoredPosition.y);
+        bgTransaction.gameObject.SetActive(true);
         gameObject.SetActive(true);
         // Move bgTransaction para o centro do canvas
         DOVirtual.DelayedCall(0.5f,() => { bgTransaction.DOAnchorPosX(0, 1f).OnComplete(() =>
