@@ -167,6 +167,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!onAction)
         {
+            FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.DmgPlayer);
             health -= dmg;
             if (health <= 0)
             {

@@ -13,9 +13,9 @@ public class MenuScript : MonoBehaviour
     private void Awake()
     {
         FindFirstObjectByType<MusicControler>().PlayMusic(MusicControler.GameState.Menu);
-        audioMixer.SetFloat("VolumeP", Mathf.Log10(PlayerPrefs.GetFloat("VolumeP", 1)) * 20);
-        audioMixer.SetFloat("VolumeM", Mathf.Log10(PlayerPrefs.GetFloat("VolumeM", 1)) * 20);
-        audioMixer.SetFloat("VolumeE", Mathf.Log10(PlayerPrefs.GetFloat("VolumeE", 1)) * 20);
+        audioMixer.SetFloat("VolumeP", Mathf.Log10(PlayerPrefs.GetFloat("VolumeP", 1f)) * 20);
+        audioMixer.SetFloat("VolumeM", Mathf.Log10(PlayerPrefs.GetFloat("VolumeM", 0.3f)) * 20);
+        audioMixer.SetFloat("VolumeE", Mathf.Log10(PlayerPrefs.GetFloat("VolumeE", 0.25f)) * 20);
     }
    
     public void GoToGame()

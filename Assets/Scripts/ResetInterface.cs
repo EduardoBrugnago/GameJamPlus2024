@@ -127,6 +127,7 @@ public class ResetInterface : MonoBehaviour
                     anim.Func_PlayUIAnim();
                 }
                 resetTime.alpha = 0; // Garantindo que comece invisível
+                FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Fail);
                 resetTime.DOFade(1, 1f).OnComplete(() =>
                 {
                     // Espera 1 segundo

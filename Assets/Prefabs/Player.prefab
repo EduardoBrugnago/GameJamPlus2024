@@ -282,6 +282,8 @@ MonoBehaviour:
   TeleportTwoSfx: {fileID: 8300000, guid: 0b33a3c988382af4b9cc43a8ec987363, type: 3}
   StartSfx: {fileID: 8300000, guid: a853f213aae23f34e8bb6bf95c81617c, type: 3}
   AssSfx: {fileID: 8300000, guid: 25c935a1a53fd224588e065cabc16319, type: 3}
+  dmgPlayer: {fileID: 8300000, guid: ba2135abfb3dbf24f8dd2075e4f04de5, type: 3}
+  failSfx: {fileID: 8300000, guid: 96743c945f91e5a4b801aeeb814eeab9, type: 3}
   GlassSfx:
   - {fileID: 8300000, guid: cfe7cc976cacfd44bae254012d2a2777, type: 3}
   - {fileID: 8300000, guid: 49eafa4b91c763c42bd6b0ddf1607e3b, type: 3}
