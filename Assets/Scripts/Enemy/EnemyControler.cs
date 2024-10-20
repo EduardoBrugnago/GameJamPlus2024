@@ -14,8 +14,6 @@ public class EnemyControler : MonoBehaviour
 
     private void HandleSprite()
     {
-        spriteRenderer.material.EnableKeyword("CHANGECOLOR_ON");
-        spriteRenderer.material.EnableKeyword("CHANGECOLOR2_ON");
         spriteRenderer.material.SetColor("_ColorChangeTarget", new Color(159f / 255f, 159f / 255f, 159f / 255f));
         spriteRenderer.material.SetColor("_ColorChangeTarget2", new Color(38f / 255f, 38f / 255f, 38f / 255f));
         spriteRenderer.material.SetFloat("_ColorChangeTolerance", 0.594f);
