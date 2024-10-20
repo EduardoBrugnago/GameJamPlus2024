@@ -952,6 +952,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetTime: {fileID: 3893168148402412344}
+  resetText: {fileID: 5752663821899757610}
   movimentControler: {fileID: 0}
   bgTransaction: {fileID: 2712546484594098383}
   textTime: {fileID: 5531696572238395121}

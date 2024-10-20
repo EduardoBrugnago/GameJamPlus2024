@@ -140,16 +140,16 @@ public class PlayerController : MonoBehaviour
 
         if (deathTimer <= 0)
         {
-            HandleDeath();
+            HandleDeath("Your time is up!");
             deathTimer = maxDeathTimer;
         }
     }
-    public void HandleDeath()
+    public void HandleDeath(string msg)
     {
         if (resetInterface != null)
         {
             onAction = true;
-            resetInterface.Reset();
+            resetInterface.Reset(msg);
         }
         else
         {
@@ -171,7 +171,7 @@ public class PlayerController : MonoBehaviour
             if (health <= 0)
             {
                 health = 0;
-                HandleDeath();
+                HandleDeath("You Died!");
             }
         }
 

@@ -143,6 +143,12 @@ public class GerenciadorFase : MonoBehaviour
         ValidateNextTarget();
     }
 
+    public void LostCombo()
+    {
+        currentCombo = 1;
+        totalHits = 0;
+        UpdateDisplays();
+    }
     private void UpdateDisplays()
     {
         // Atualiza o texto do display de pontos

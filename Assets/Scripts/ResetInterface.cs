@@ -8,6 +8,7 @@ public class ResetInterface : MonoBehaviour
 {
 
     public CanvasGroup resetTime;
+    public TextMeshProUGUI resetText;
     public PlayerController movimentControler;
 
     public RectTransform bgTransaction;
@@ -94,7 +95,7 @@ public class ResetInterface : MonoBehaviour
         }
         
     }
-    public void Reset()
+    public void Reset(string msg)
     {
         if (movimentControler != null)
         {
@@ -102,7 +103,7 @@ public class ResetInterface : MonoBehaviour
             movimentControler.startTimer = false;
         }
 
-       
+        resetText.text = msg;
         float screenWidth = Screen.width;
         float startPositionX = screenWidth * 2.25f;
 

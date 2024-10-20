@@ -79,6 +79,11 @@ public class Teleporter : MonoBehaviour
                         }
                     } else
                     {
+                        if(gerenciadorFase != null)
+                        {
+                            gerenciadorFase.LostCombo();
+                        }
+                        
                         FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Teleport2);
                         player.transform.position = lastPosition;
                     }
@@ -105,7 +110,7 @@ public class Teleporter : MonoBehaviour
             PlayerController playerControl = player.GetComponent<PlayerController>();
             if (playerControl != null)
             {
-                playerControl.HandleDeath();
+                playerControl.HandleDeath("You lost your star!");
             }
         }
     }

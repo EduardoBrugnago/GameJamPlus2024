@@ -124,7 +124,7 @@ public class LifeControler : MonoBehaviour
                     PlayerController playerControl = player.GetComponent<PlayerController>();
                     if (playerControl != null)
                     {
-                        playerControl.HandleDeath();
+                        playerControl.HandleDeath("You failed the choreography");
                     }
                 }
             }

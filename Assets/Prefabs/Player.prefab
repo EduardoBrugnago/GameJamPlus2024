@@ -122,11 +122,12 @@ MonoBehaviour:
   onAction: 0
   health: 2
   maxHealth: 2
-  deathTimer: 15
-  maxDeathTimer: 15
+  deathTimer: 8
+  maxDeathTimer: 8
   timerBar: {fileID: 0}
   startTimer: 0
   feedbackTarget: {fileID: 1792481953649607605}
+  killColor: {fileID: 0}
   resetInterface: {fileID: 0}
 --- !u!114 &2727438007985709992
 MonoBehaviour:
@@ -148,7 +149,7 @@ MonoBehaviour:
   shotsFired: 0
   canShoot: 1
   teleportPrefab: {fileID: 5207258290727726522, guid: 95c09d17e8a2e28438b058aeb3cb7fbd, type: 3}
-  teleportMaxDistance: 25
+  teleportMaxDistance: 15
   teleportSpeed: 30
 --- !u!114 &376769294377460097
 MonoBehaviour:

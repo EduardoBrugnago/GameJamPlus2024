@@ -264,7 +264,7 @@ MonoBehaviour:
   player: {fileID: 0}
   visionRange: 8
   attackRange: 3
-  chaseSpeed: 9
+  chaseSpeed: 8
   rotationSpeed: 6
   alertTime: 0.01
   retreatRange: 15
@@ -274,8 +274,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   melee: {fileID: 3426188814001442883}
-  atkDuration: 0.4
-  atkDelay: 1
+  atkDuration: 0.6
+  atkDelay: 1.2
+  animator: {fileID: 0}
+  initialPosition: {x: 0, y: 0}
+  seeker: {fileID: 0}
+  aiPath: {fileID: 0}
 --- !u!50 &1775476390061396396
 Rigidbody2D:
   serializedVersion: 4
