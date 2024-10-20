@@ -104,7 +104,7 @@ public class PlayerShooting : MonoBehaviour
         Vector2 spawnPosition = firePoint.position;
  
         Collider2D hitCollider = Physics2D.OverlapCircle(spawnPosition, 0.1f); // Altere o raio conforme necessário
-        if (hitCollider != null && hitCollider.CompareTag("Player") == false)
+        if (hitCollider != null && hitCollider.CompareTag("Player") == false &&  hitCollider.CompareTag("Enemy") == false && hitCollider.CompareTag("Destructible") == false)
         {
             canShoot = true;
             return;

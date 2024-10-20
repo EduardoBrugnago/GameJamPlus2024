@@ -261,20 +261,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   player: {fileID: 0}
-  visionRange: 18
-  attackRange: 2
-  chaseSpeed: 8
+  visionRange: 8
+  attackRange: 3
+  chaseSpeed: 9
   rotationSpeed: 6
   alertTime: 0.01
   retreatRange: 15
-  visionRadius: 6.13
+  visionRadius: 6
   fieldOfViewAngle: 190
   obstacleMask:
     serializedVersion: 2
     m_Bits: 128
   melee: {fileID: 0}
   atkDuration: 0.4
-  atkDelay: 0.5
+  atkDelay: 1
 --- !u!50 &1775476390061396396
 Rigidbody2D:
   serializedVersion: 4
