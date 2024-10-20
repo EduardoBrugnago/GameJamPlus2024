@@ -14,22 +14,32 @@ public class EnemyControler : MonoBehaviour
 
     private void HandleSprite()
     {
+        spriteRenderer.material.EnableKeyword("CHANGECOLOR_ON");
+        spriteRenderer.material.EnableKeyword("CHANGECOLOR2_ON");
+        spriteRenderer.material.SetColor("_ColorChangeTarget", new Color(159f / 255f, 159f / 255f, 159f / 255f));
+        spriteRenderer.material.SetColor("_ColorChangeTarget2", new Color(38f / 255f, 38f / 255f, 38f / 255f));
+        spriteRenderer.material.SetFloat("_ColorChangeTolerance", 0.594f);
         switch (Nota)
         {
             case TargetType.Do:
-                spriteRenderer.color = Color.red; // Cor para Nota 1
+                spriteRenderer.material.SetColor("_ColorChangeNewCol", Color.red);
+                spriteRenderer.material.SetColor("_ColorChangeNewCol2", Color.red);
                 break;
             case TargetType.Re:
-                spriteRenderer.color = Color.green; // Cor para Nota 2
+                spriteRenderer.material.SetColor("_ColorChangeNewCol", Color.green);
+                spriteRenderer.material.SetColor("_ColorChangeNewCol2", Color.green);
                 break;
             case TargetType.Mi:
-                spriteRenderer.color = Color.blue; // Cor para Nota 3
+                spriteRenderer.material.SetColor("_ColorChangeNewCol", Color.blue);
+                spriteRenderer.material.SetColor("_ColorChangeNewCol2", Color.blue);
                 break;
             case TargetType.Fa:
-                spriteRenderer.color = Color.yellow; // Cor para Nota 3
+                spriteRenderer.material.SetColor("_ColorChangeNewCol", Color.yellow);
+                spriteRenderer.material.SetColor("_ColorChangeNewCol2", Color.yellow);
                 break;
             default:
-                spriteRenderer.color = Color.red; // Cor padrão
+                spriteRenderer.material.SetColor("_ColorChangeNewCol", Color.red);
+                spriteRenderer.material.SetColor("_ColorChangeNewCol2", Color.red);
                 break;
         }
     }

@@ -82,6 +82,9 @@ public class LifeControler : MonoBehaviour
                 animationRenderer.enabled = false;
                 iaEnemy.currentState = EnemyAI.EnemyState.Dead;
                 spriteRenderer.color = Color.white;
+
+                spriteRenderer.material.EnableKeyword("CHANGECOLOR_OFF");
+                spriteRenderer.material.EnableKeyword("CHANGECOLOR2_OFF");
             }
         }
 
