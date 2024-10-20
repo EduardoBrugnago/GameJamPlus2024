@@ -82,6 +82,9 @@ public class Teleporter : MonoBehaviour
             }
 
             Destroy(gameObject);
+        } else
+        {
+            Destroy(gameObject);
         }
     }
 

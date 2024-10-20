@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5141234440086109593}
   - component: {fileID: -3872188698433904919}
   - component: {fileID: 66796577717833160}
-  m_Layer: 3
+  m_Layer: 8
   m_Name: Projetil_Taco
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleportDistance: 2
   maxDistance: 2
+  gerenciadorFase: {fileID: 0}
 --- !u!50 &-3872188698433904919
 Rigidbody2D:
   serializedVersion: 4

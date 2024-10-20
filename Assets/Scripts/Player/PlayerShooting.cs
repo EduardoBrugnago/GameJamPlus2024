@@ -101,7 +101,14 @@ public class PlayerShooting : MonoBehaviour
             fireDirection = aimDirection;
         }
 
-
+        Vector2 spawnPosition = firePoint.position;
+ 
+        Collider2D hitCollider = Physics2D.OverlapCircle(spawnPosition, 0.1f); // Altere o raio conforme necessário
+        if (hitCollider != null && hitCollider.CompareTag("Player") == false)
+        {
+            canShoot = true;
+            return;
+        }
         // Cria o projétil na posição do ponto de disparo e com a rotação correta
         GameObject projectile = Instantiate(teleportPrefab, firePoint.position, Quaternion.identity);
 
