@@ -39,7 +39,7 @@ public class GerenciadorFase : MonoBehaviour
     public void DoSlowmotion()
     {
         CancelSlowmotion();
-        
+
         Time.timeScale = slowdownFactor;
         Time.fixedDeltaTime = Time.timeScale * .03f;
 
@@ -48,18 +48,15 @@ public class GerenciadorFase : MonoBehaviour
 
     IEnumerator SlowmotionTimer()
     {
-        Debug.Log("CCC");
         yield return new WaitForSeconds(0.08f); // Espera por 1 segundo
-        Debug.Log("EEE");
         CancelSlowmotion();
     }
     public void CancelSlowmotion()
     {
-        Debug.Log("AAAA");
         Time.timeScale = oldF;
         Time.fixedDeltaTime = olfL;
     }
-    
+
 
     void Start()
     {
@@ -68,26 +65,26 @@ public class GerenciadorFase : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
 
         enemyList.AddRange(FindObjectsByType<EnemyControler>(0));
-        if(targetList.Count > 0)
+        if (targetList.Count > 0)
         {
             currentTarget = targetList[0];
             currentIndex = 0;
-            if(player != null)
+            if (player != null)
             {
                 PlayerController controlerPlayer = player.GetComponent<PlayerController>();
-                if(controlerPlayer != null)
+                if (controlerPlayer != null)
                 {
                     controlerPlayer.TargetHandler(currentTarget);
                 }
             }
         }
-        
+
 
     }
 
     public bool ValidateTarget(EnemyControler target)
     {
-        
+
         if (target != null)
         {
             if (target.Nota == currentTarget)
@@ -121,7 +118,7 @@ public class GerenciadorFase : MonoBehaviour
         }
     }
     // Método para gerenciar o BulletTime
-    public void BulletTime() 
+    public void BulletTime()
     {
         // Lógica para ativar/desativar BulletTime
     }
@@ -152,14 +149,14 @@ public class GerenciadorFase : MonoBehaviour
         pointsDisplay.text = currentPoints.ToString();
 
         // Atualiza o texto do display de combo
-        comboDisplay.text = currentCombo.ToString() + "x"; 
+        comboDisplay.text = currentCombo.ToString() + "x";
     }
 
     // Método para levar a falha
     private void HandleLoose()
     {
         currentCombo = 1;
-        totalHits = 0; 
+        totalHits = 0;
     }
 
     public void HandleWin(EnemyControler target)
@@ -199,7 +196,7 @@ public class GerenciadorFase : MonoBehaviour
             {
                 controlerReset.VictoryModal();
             }
- 
+
         }
     }
 
@@ -207,7 +204,7 @@ public class GerenciadorFase : MonoBehaviour
     private void ValidateNextTarget()
     {
         TargetType proximaNota = GetNextTarget(currentTarget);
-  
+
         if (proximaNota != 0)
         {
             bool haveEnemy = false;
@@ -220,7 +217,7 @@ public class GerenciadorFase : MonoBehaviour
             }
             if (haveEnemy)
             {
-              
+
                 currentTarget = proximaNota;
                 if (player != null)
                 {
@@ -230,12 +227,13 @@ public class GerenciadorFase : MonoBehaviour
                         controlerPlayer.TargetHandler(currentTarget);
                     }
                 }
-            } else
+            }
+            else
             {
                 HandleLoose();
             }
         }
-       
+
     }
 
     // Método para obter a próxima nota musical
