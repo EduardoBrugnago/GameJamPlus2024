@@ -5977,6 +5977,10 @@ PrefabInstance:
       propertyPath: visionRadius
       value: 10.67
       objectReference: {fileID: 0}
+    - target: {fileID: 7579379601794012118, guid: 0d8bb3ee9d55a8a4d9a8123788f1829d, type: 3}
+      propertyPath: projectileSpeed
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6542,6 +6546,10 @@ PrefabInstance:
       propertyPath: visionRadius
       value: 10.67
       objectReference: {fileID: 0}
+    - target: {fileID: 7579379601794012118, guid: 0d8bb3ee9d55a8a4d9a8123788f1829d, type: 3}
+      propertyPath: projectileSpeed
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8858365189935924769, guid: 0d8bb3ee9d55a8a4d9a8123788f1829d, type: 3}
       propertyPath: Nota
       value: 4
@@ -6667,6 +6675,10 @@ PrefabInstance:
     - target: {fileID: 7579379601794012118, guid: 0d8bb3ee9d55a8a4d9a8123788f1829d, type: 3}
       propertyPath: visionRadius
       value: 10.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579379601794012118, guid: 0d8bb3ee9d55a8a4d9a8123788f1829d, type: 3}
+      propertyPath: projectileSpeed
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8858365189935924769, guid: 0d8bb3ee9d55a8a4d9a8123788f1829d, type: 3}
       propertyPath: Nota
@@ -16185,7 +16197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6043bde05a7fc4cba197d06915c1e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damping: {x: 2, y: 2, z: 2}
+  Damping: {x: 1, y: 1, z: 1}
   ShoulderOffset: {x: 0.5, y: -0.4, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 1

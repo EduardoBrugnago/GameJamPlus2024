@@ -4114,6 +4114,7 @@ MonoBehaviour:
   - Lvl_2
   - Lvl_3
   - Lvl_5
+  - Lvl_4
   - Finish
   currentSceneIndex: 0
   firstLoad: 0
@@ -4362,7 +4363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1383075888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11351,11 +11352,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3179003376791587951, guid: cf8f381dcc24f934bbd82eb7deb07499, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3179003376791587951, guid: cf8f381dcc24f934bbd82eb7deb07499, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7009339015126705178, guid: cf8f381dcc24f934bbd82eb7deb07499, type: 3}
       propertyPath: m_Name

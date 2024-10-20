@@ -1967,7 +1967,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.342, y: 0.827}
   m_AnchorMax: {x: 0.66152084, y: 0.97400004}
-  m_AnchoredPosition: {x: 0, y: -0.000034332}
+  m_AnchoredPosition: {x: 0, y: -0.000030517578}
   m_SizeDelta: {x: -250.6599, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &718612920
@@ -4915,7 +4915,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Jo\xE3o Pedro Cunha\n@jpedromcunha"
+  m_text: 'Joao Pedro Cunha
+
+    @jpedromcunha'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1010953704798549b314ce2f4187c95, type: 2}
   m_sharedMaterial: {fileID: 1999889102779214853, guid: b1010953704798549b314ce2f4187c95, type: 2}
