@@ -1,0 +1,61 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerSounds : MonoBehaviour
+{
+    public enum SfxState { Trow, Dmg, Teleport, Death, Teleport2 }
+    public SfxState currentState;
+
+    // Referências às músicas para cada estado
+    public AudioClip TrowSfx;
+    public AudioClip DmgSfx;
+    public AudioClip TeleportSfx;
+    public AudioClip DeathSfx;
+    public AudioClip TeleportTwoSfx;
+    private AudioSource audioSource;
+
+    private static PlayerSounds instance;
+
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void PlaySfx(SfxState state)
+    {
+        if (currentState == state && audioSource.isPlaying)
+            return; // Não troca a música se já estiver tocando a do estado atual
+
+        currentState = state;
+        switch (state)
+        {
+            case SfxState.Trow:
+                audioSource.clip = TrowSfx;
+                break;
+            case SfxState.Dmg:
+                audioSource.clip = DmgSfx;
+                break;
+            case SfxState.Teleport:
+                audioSource.clip = TeleportSfx;
+                break;
+            case SfxState.Death:
+                audioSource.clip = DeathSfx;
+                break;
+            case SfxState.Teleport2:
+                audioSource.clip = TeleportTwoSfx;
+                break;
+        }
+
+        audioSource.Play();
+    }
+}

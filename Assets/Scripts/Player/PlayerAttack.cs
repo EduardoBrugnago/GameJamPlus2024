@@ -21,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (!isAttacking)
         {
+            FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Dmg);
             melee.SetActive(true);
             GetComponent<PlayerController>().animator.Play("PAttack");
             isAttacking = true;

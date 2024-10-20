@@ -14,6 +14,35 @@ public class LifeControler : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
+    private Vector2 forceDirection;
+    private bool shouldMove = false;
+    private GameObject objectToMove;
+    private Vector2 startPosition;
+    private float pushDistance = 4f; 
+    private float pushSpeed = 6f; 
+    void Update()
+    {
+        if (shouldMove && objectToMove != null)
+        {
+            // Calcula a nova posição
+            Vector2 newPosition = Vector2.Lerp(objectToMove.transform.position,
+                (Vector2)this.transform.position + forceDirection, pushSpeed * Time.deltaTime);
+
+            // Verifica a distância percorrida
+            float distanceMoved = Vector2.Distance(this.transform.position, newPosition);
+
+            // Se a distância percorrida for menor que o limite, continue movendo
+            if (distanceMoved < pushDistance)
+            {
+                objectToMove.transform.position = newPosition;
+            }
+            else
+            {
+                // Para o movimento após atingir a distância
+                shouldMove = false;
+            }
+        }
+    }
 
     private void Start()
     {
@@ -45,13 +74,21 @@ public class LifeControler : MonoBehaviour
 
         // Trocar o sprite
         if (deadSprite != null && spriteRenderer != null)
+            shouldMove = true;
             spriteRenderer.sprite = deadSprite;
             spriteRenderer.sortingOrder = 1;
+        
+        
     }
 
-    public void ValidateDmgTypeByTarget(bool isTeleport, int dmg)
+    public void ValidateDmgTypeByTarget(bool isTeleport, int dmg, Vector2? dir)
     {
-        if(!isTeleport)
+        if(dir is Vector2)
+        {
+            forceDirection = (Vector2)dir;
+        }
+        
+        if (!isTeleport)
         {
             HandleDamege(dmg);
         } else
@@ -67,6 +104,7 @@ public class LifeControler : MonoBehaviour
 
                     if (!isLastEnemy)
                     {
+                        FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Teleport);
                         HandleDamege(999);
                     } else
                     {
@@ -85,6 +123,7 @@ public class LifeControler : MonoBehaviour
             }
             else
             {
+                FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Teleport);
                 HandleDamege(999);
             }
         }

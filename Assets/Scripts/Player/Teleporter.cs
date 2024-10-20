@@ -17,7 +17,7 @@ public class Teleporter : MonoBehaviour
     {
         // Armazena a posição inicial do Teleporter
         player = GameObject.FindGameObjectWithTag("Player");
-
+        FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Trow);
         PlayerShooting playerShooting = player.GetComponent<PlayerShooting>();
         if(playerShooting != null)
         {
@@ -58,9 +58,11 @@ public class Teleporter : MonoBehaviour
                         playerShooting.shotsFired = 0;
 
                         LifeControler life = collision.gameObject.GetComponent<LifeControler>();
+                        Vector2 forceDirection = (collision.gameObject.transform.position - transform.position).normalized;
+
                         if (life != null)
                         {
-                            life.ValidateDmgTypeByTarget(true, 9999);
+                            life.ValidateDmgTypeByTarget(true, 9999, forceDirection);
                         }
 
                         PlayerController playerController = player.GetComponent<PlayerController>();
@@ -70,6 +72,7 @@ public class Teleporter : MonoBehaviour
                         }
                     } else
                     {
+                        FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Teleport2);
                         player.transform.position = lastPosition;
                     }
                 }

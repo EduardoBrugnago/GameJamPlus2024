@@ -16,7 +16,7 @@ public class MenuScript : MonoBehaviour
         audioMixer.SetFloat("VolumeM", Mathf.Log10(PlayerPrefs.GetFloat("VolumeM", 1)) * 20);
         audioMixer.SetFloat("VolumeE", Mathf.Log10(PlayerPrefs.GetFloat("VolumeE", 1)) * 20);
     }
-
+   
     public void GoToGame()
     {
         SceneManager.LoadScene("Lvl_1");
