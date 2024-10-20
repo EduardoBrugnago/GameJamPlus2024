@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,10 +27,11 @@ public class UISpriteAnimation : MonoBehaviour
     IEnumerator Func_PlayAnimUI()
     {
         yield return new WaitForSeconds(m_Speed);
-        if (m_IndexSprite >= m_SpriteArray.Length)
+        if (m_IndexSprite >= m_SpriteArray.Length - 1)
         {
             IsDone = true;
         }
+
         m_Image.sprite = m_SpriteArray[m_IndexSprite];
         m_IndexSprite += 1;
         if (IsDone == false)

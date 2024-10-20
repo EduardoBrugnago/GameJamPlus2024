@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-
 public class LifeControler : MonoBehaviour
 {
     public int health = 2;
@@ -18,7 +14,7 @@ public class LifeControler : MonoBehaviour
     private bool shouldMove = false;
     private GameObject objectToMove;
     private Vector2 startPosition;
-    private float pushDistance = 4f; 
+    private float pushDistance = 4f;
     private float pushSpeed = 6f;
     public GameObject Explosion;
     void Update()
@@ -58,7 +54,7 @@ public class LifeControler : MonoBehaviour
 
     public void HandleDamege(int dmg)
     {
-        
+
         health -= dmg;
         if (health <= 0)
         {
@@ -83,8 +79,8 @@ public class LifeControler : MonoBehaviour
                 iaEnemy.currentState = EnemyAI.EnemyState.Dead;
                 spriteRenderer.color = Color.white;
 
-                spriteRenderer.material.EnableKeyword("CHANGECOLOR_OFF");
-                spriteRenderer.material.EnableKeyword("CHANGECOLOR2_OFF");
+                spriteRenderer.material.DisableKeyword("CHANGECOLOR_ON");
+                spriteRenderer.material.DisableKeyword("CHANGECOLOR2_ON");
             }
         }
 
@@ -92,49 +88,51 @@ public class LifeControler : MonoBehaviour
         {
             GameObject GO = Instantiate(Explosion, transform.position, Quaternion.identity);
             Destroy(GO, 1f);
-            
+
         }
         // Trocar o sprite
         if (deadSprite != null && spriteRenderer != null)
             shouldMove = true;
-            spriteRenderer.sprite = deadSprite;
-            spriteRenderer.sortingOrder = 1;
-        
-        
+        spriteRenderer.sprite = deadSprite;
+        spriteRenderer.sortingOrder = 1;
+
+
     }
 
 
-    
+
     public void ValidateDmgTypeByTarget(bool isTeleport, int dmg, Vector2? dir)
     {
 
-        
+
         if (!isTeleport)
         {
             HandleDamege(dmg);
-        } else
+        }
+        else
         {
             EnemyControler enemy = GetComponent<EnemyControler>();
             if (enemy != null)
             {
-               
+
                 bool isValid = lvlControler.ValidateTarget(enemy);
 
                 if (isValid)
                 {
                     lvlControler.DoSlowmotion();
-                    
+
                     bool isLastEnemy = lvlControler.ValidateLastEnemy(enemy);
                     if (!isLastEnemy)
                     {
                         FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Teleport);
                         HandleDamege(999);
-                    } else
+                    }
+                    else
                     {
                         HandleDamege(999);
                         lvlControler.HandleWin(enemy);
                     }
-                    
+
                 }
                 else
                 {
