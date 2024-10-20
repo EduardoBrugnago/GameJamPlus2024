@@ -19,7 +19,8 @@ public class LifeControler : MonoBehaviour
     private GameObject objectToMove;
     private Vector2 startPosition;
     private float pushDistance = 4f; 
-    private float pushSpeed = 6f; 
+    private float pushSpeed = 6f;
+    public GameObject Explosion;
     void Update()
     {
         if (shouldMove && objectToMove != null)
@@ -72,6 +73,11 @@ public class LifeControler : MonoBehaviour
         if (rb != null)
             rb.simulated = false;
 
+        if(Explosion != null)
+        {
+            GameObject GO = Instantiate(Explosion, transform.position, Quaternion.identity);
+            Destroy(GO, 1f);
+        }
         // Trocar o sprite
         if (deadSprite != null && spriteRenderer != null)
             shouldMove = true;
@@ -81,12 +87,11 @@ public class LifeControler : MonoBehaviour
         
     }
 
+
+    
     public void ValidateDmgTypeByTarget(bool isTeleport, int dmg, Vector2? dir)
     {
-        if(dir is Vector2)
-        {
-            forceDirection = (Vector2)dir;
-        }
+
         
         if (!isTeleport)
         {
@@ -96,12 +101,14 @@ public class LifeControler : MonoBehaviour
             EnemyControler enemy = GetComponent<EnemyControler>();
             if (enemy != null)
             {
+               
                 bool isValid = lvlControler.ValidateTarget(enemy);
 
                 if (isValid)
                 {
+                    lvlControler.DoSlowmotion();
+                    
                     bool isLastEnemy = lvlControler.ValidateLastEnemy(enemy);
-
                     if (!isLastEnemy)
                     {
                         FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Teleport);
@@ -123,10 +130,15 @@ public class LifeControler : MonoBehaviour
             }
             else
             {
-                FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Teleport);
+                FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Glass);
                 HandleDamege(999);
             }
         }
-      
+
+        if (dir is Vector2)
+        {
+            forceDirection = (Vector2)dir;
+        }
     }
+
 }

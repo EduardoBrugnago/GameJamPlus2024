@@ -30,8 +30,41 @@ public class GerenciadorFase : MonoBehaviour
     public TextMeshProUGUI pointsDisplay;
     public TextMeshProUGUI comboDisplay;
     public GameObject Ui_State;
+
+    public float slowdownFactor = 0.05f;
+    public float slowdownLength = 2f;
+    public float oldF;
+    public float olfL;
+
+    public void DoSlowmotion()
+    {
+        CancelSlowmotion();
+        
+        Time.timeScale = slowdownFactor;
+        Time.fixedDeltaTime = Time.timeScale * .02f;
+
+        Invoke("CancelSlowmotion", 0.1f);
+    }
+
+    IEnumerator SlowmotionTimer()
+    {
+        Debug.Log("CCC");
+        yield return new WaitForSeconds(0.1f); // Espera por 1 segundo
+        Debug.Log("EEE");
+        CancelSlowmotion();
+    }
+    public void CancelSlowmotion()
+    {
+        Debug.Log("AAAA");
+        Time.timeScale = oldF;
+        Time.fixedDeltaTime = olfL;
+    }
+    
+
     void Start()
     {
+        oldF = Time.timeScale;
+        olfL = Time.fixedDeltaTime;
         player = GameObject.FindGameObjectWithTag("Player");
 
         enemyList.AddRange(FindObjectsByType<EnemyControler>(0));
@@ -132,6 +165,7 @@ public class GerenciadorFase : MonoBehaviour
 
     public void HandleWin(EnemyControler target)
     {
+        CancelSlowmotion();
         Camera mainCamera = Camera.main;
         if (mainCamera != null)
         {
@@ -221,5 +255,6 @@ public class GerenciadorFase : MonoBehaviour
     }
 
 }
+
 
 

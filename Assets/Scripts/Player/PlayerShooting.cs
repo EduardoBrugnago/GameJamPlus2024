@@ -19,35 +19,43 @@ public class PlayerShooting : MonoBehaviour
     public GameObject teleportPrefab;
     public float teleportMaxDistance = 10f;
     public float teleportSpeed = 10f;
-
+    PlayerController controlerPlayer;
     void Start()
     {
+        controlerPlayer = GetComponent<PlayerController>();
         cam = Camera.main;
     }
 
     void Update()
     {
-        // Captura da posição do mouse (para mira com mouse)
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-
-        // Mira com controle (stick analógico direito)
-        //float aimHorizontal = Input.GetAxisRaw("RightStickX");
-        //float aimVertical = Input.GetAxisRaw("RightStickY");
-
-        //// Se houver entrada no stick direito, define a direção de mira com controle
-        //if (Mathf.Abs(aimHorizontal) > 0.1f || Mathf.Abs(aimVertical) > 0.1f)
-        //{
-        //    aimDirection = new Vector2(aimHorizontal, aimVertical).normalized;
-        //}
-
-        // Se clicar com o mouse ou pressionar o botão de tiro, tenta atirar
-
-        if (Input.GetButtonDown("Fire2") && canShoot)
+        if (controlerPlayer != null)
         {
-            GetComponent<PlayerController>().animator.Play("PShoot");
-            canShoot = false;
-            Teleport();
+            if (!controlerPlayer.onAction)
+            {
+                // Captura da posição do mouse (para mira com mouse)
+                mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+                // Mira com controle (stick analógico direito)
+                //float aimHorizontal = Input.GetAxisRaw("RightStickX");
+                //float aimVertical = Input.GetAxisRaw("RightStickY");
+
+                //// Se houver entrada no stick direito, define a direção de mira com controle
+                //if (Mathf.Abs(aimHorizontal) > 0.1f || Mathf.Abs(aimVertical) > 0.1f)
+                //{
+                //    aimDirection = new Vector2(aimHorizontal, aimVertical).normalized;
+                //}
+
+                // Se clicar com o mouse ou pressionar o botão de tiro, tenta atirar
+
+                if (Input.GetButtonDown("Fire2") && canShoot)
+                {
+                    GetComponent<PlayerController>().animator.Play("PShoot");
+                    canShoot = false;
+                    Teleport();
+                }
+            }
         }
+ 
     }
 
     IEnumerator ShootCoroutine()

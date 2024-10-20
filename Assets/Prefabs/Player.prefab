@@ -277,6 +277,10 @@ MonoBehaviour:
   TeleportSfx: {fileID: 8300000, guid: 300b22c34e497c944819e1e178be01e2, type: 3}
   DeathSfx: {fileID: 8300000, guid: 300b22c34e497c944819e1e178be01e2, type: 3}
   TeleportTwoSfx: {fileID: 8300000, guid: 0b33a3c988382af4b9cc43a8ec987363, type: 3}
+  GlassSfx:
+  - {fileID: 8300000, guid: cfe7cc976cacfd44bae254012d2a2777, type: 3}
+  - {fileID: 8300000, guid: 49eafa4b91c763c42bd6b0ddf1607e3b, type: 3}
+  - {fileID: 8300000, guid: cfe7cc976cacfd44bae254012d2a2777, type: 3}
 --- !u!1 &5399184703305599954
 GameObject:
   m_ObjectHideFlags: 0
@@ -575,6 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  isPlayer: 1
 --- !u!70 &5400084576585161452
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

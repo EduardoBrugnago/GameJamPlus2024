@@ -59,11 +59,12 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
         // Movimenta��o usando teclado ou controle
         if (!onAction)
         {
-            movement.x = Input.GetAxisRaw("Horizontal");  // Eixo Horizontal (WASD, setas, ou stick anal�gico esquerdo)
-            movement.y = Input.GetAxisRaw("Vertical");    // Eixo Vertical
+            //movement.x = Input.GetAxisRaw("Horizontal");  // Eixo Horizontal (WASD, setas, ou stick anal�gico esquerdo)
+            //movement.y = Input.GetAxisRaw("Vertical");    // Eixo Vertical
 
             // Captura da posi��o do mouse (para mira com mouse)
             mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
@@ -88,7 +89,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!onAction)
         {
-            if (movement.magnitude > 0)
+            /*if (movement.magnitude > 0)
             {
                 movement = movement.normalized;
             }
@@ -103,7 +104,7 @@ public class PlayerController : MonoBehaviour
                 // Aplicar movimenta��o diretamente � posi��o
                 rb.velocity = movement * moveSpeed;
             }
-
+            */
             // Mira com o mouse (teclado + mouse)
             Vector2 lookDir = mousePos - rb.position;
 
@@ -144,6 +145,7 @@ public class PlayerController : MonoBehaviour
     {
         if (resetInterface != null)
         {
+            onAction = true;
             resetInterface.Reset();
         }
         else

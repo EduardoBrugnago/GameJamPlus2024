@@ -12,7 +12,7 @@ public class Teleporter : MonoBehaviour
 
     private float collisionTimeLimit = 2f;
     private GameObject player;
-
+    public GerenciadorFase gerenciadorFase;
     private void Start()
     {
         // Armazena a posição inicial do Teleporter

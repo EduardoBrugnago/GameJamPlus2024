@@ -8,6 +8,7 @@ public class MenuScript : MonoBehaviour
     public GameObject menu;
     public GameObject creditos;
     public GameObject opcoes;
+    public GameObject imgLogo;
 
     private void Awake()
     {
@@ -38,6 +39,7 @@ public class MenuScript : MonoBehaviour
     {
         DisableAll();
         menu.SetActive(true);
+        imgLogo.SetActive(true);
     }
 
     void DisableAll()
@@ -45,6 +47,12 @@ public class MenuScript : MonoBehaviour
         menu.SetActive(false);
         creditos.SetActive(false);
         opcoes.SetActive(false);
+        imgLogo.SetActive(false);
+    }
+
+    public void Close()
+    {
+        Application.Quit();
     }
 
 

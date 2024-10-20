@@ -6,15 +6,26 @@ public class PlayerAttack : MonoBehaviour
     bool isAttacking = false;
     float atkDuration = 0.4f;
     float atkTimer = 0f;
-
+    PlayerController controlerPlayer;
+    private void Start()
+    {
+        controlerPlayer = GetComponent<PlayerController>();
+    }
     private void Update()
     {
-        CheckMelleTimer();
-
-        if (Input.GetButtonDown("Fire1"))
+        if (controlerPlayer != null)
         {
-            OnAttack();
+            if (!controlerPlayer.onAction) {
+                CheckMelleTimer();
+
+                /*if (Input.GetButtonDown("Fire1"))
+                {
+                    OnAttack();
+                }*/
+            }
+          
         }
+
     }
 
     void OnAttack()
