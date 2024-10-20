@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        
+
 
 
     }
@@ -179,24 +179,42 @@ public class PlayerController : MonoBehaviour
 
     public void TargetHandler(TargetType target)
     {
+        feedbackTarget.material.EnableKeyword("CHANGECOLOR_ON");
+        feedbackTarget.material.EnableKeyword("CHANGECOLOR2_ON");
+        feedbackTarget.material.EnableKeyword("CHANGECOLOR3_ON");
+        feedbackTarget.material.SetColor("_ColorChangeTarget", new Color(71f / 255f, 169f / 255f, 16f / 255f));
+        //feedbackTarget.material.SetColor("_ColorChangeTarget2", new Color(109f / 255f, 9f / 255f, 116f / 255f));
+        feedbackTarget.material.SetColor("_ColorChangeTarget3", new Color(188f / 255f, 188f / 255f, 188f / 255f));
+        feedbackTarget.material.SetFloat("_ColorChangeTolerance", 0.68f);
+        feedbackTarget.material.SetFloat("_ColorChangeTolerance2", 0.766f);
+        feedbackTarget.material.SetFloat("_ColorChangeTolerance3", 0.25f);
         if (feedbackTarget != null)
         {
             switch (target)
             {
                 case TargetType.Do:
-                    feedbackTarget.color = Color.red; // Cor para Nota 1
+                    feedbackTarget.material.SetColor("_ColorChangeNewCol", Color.red);
+                    //feedbackTarget.material.SetColor("_ColorChangeNewCol2", Color.red);
+                    feedbackTarget.material.SetColor("_ColorChangeNewCol3", Color.red);
                     killColor.color = Color.red; // Cor para Nota 1
                     break;
                 case TargetType.Re:
-                    feedbackTarget.color = Color.green; // Cor para Nota 2
+
+                    feedbackTarget.material.SetColor("_ColorChangeNewCol", Color.green);
+                    //feedbackTarget.material.SetColor("_ColorChangeNewCol2", Color.green);
+                    feedbackTarget.material.SetColor("_ColorChangeNewCol3", Color.green);
                     killColor.color = Color.green; // Cor para Nota 1
                     break;
                 case TargetType.Mi:
-                    feedbackTarget.color = Color.blue; // Cor para Nota 3
+                    feedbackTarget.material.SetColor("_ColorChangeNewCol", Color.blue);
+                    //feedbackTarget.material.SetColor("_ColorChangeNewCol2", Color.blue);
+                    feedbackTarget.material.SetColor("_ColorChangeNewCol3", Color.blue);
                     killColor.color = Color.blue; // Cor para Nota 1
                     break;
                 case TargetType.Fa:
-                    feedbackTarget.color = Color.yellow; // Cor para Nota 3
+                    feedbackTarget.material.SetColor("_ColorChangeNewCol", Color.green);
+                    //feedbackTarget.material.SetColor("_ColorChangeNewCol2", Color.green);
+                    feedbackTarget.material.SetColor("_ColorChangeNewCol3", Color.green);
                     killColor.color = Color.yellow; // Cor para Nota 1
                     break;
             }
