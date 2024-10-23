@@ -1,3 +1,4 @@
+using Cinemachine;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ public class GerenciadorFase : MonoBehaviour
     public float slowdownLength = 3f;
     public float oldF;
     public float olfL;
+    private Coroutine slowmotionCoroutine;
 
     public void DoSlowmotion()
     {
@@ -43,16 +45,21 @@ public class GerenciadorFase : MonoBehaviour
         Time.timeScale = slowdownFactor;
         Time.fixedDeltaTime = Time.timeScale * .03f;
 
-        Invoke("CancelSlowmotion", 0.09f);
+        slowmotionCoroutine = StartCoroutine(SlowmotionTimer());
     }
 
     IEnumerator SlowmotionTimer()
     {
-        yield return new WaitForSeconds(0.09f); // Espera por 1 segundo
+        yield return new WaitForSeconds(0.18f); // Espera por 1 segundo
         CancelSlowmotion();
     }
     public void CancelSlowmotion()
     {
+        if (slowmotionCoroutine != null)
+        {
+            StopCoroutine(slowmotionCoroutine); 
+            slowmotionCoroutine = null; 
+        }
         Time.timeScale = oldF;
         Time.fixedDeltaTime = olfL;
     }
@@ -84,7 +91,7 @@ public class GerenciadorFase : MonoBehaviour
 
     public bool ValidateTarget(EnemyControler target)
     {
-
+        Debug.Log("ValidateTarget: " + target.Nota + " - " + currentTarget + " resposta:" + (target.Nota == currentTarget));
         if (target != null)
         {
             if (target.Nota == currentTarget)
@@ -112,19 +119,14 @@ public class GerenciadorFase : MonoBehaviour
             return true;
         }
         else
-        {
-            HandleCombo(target.deathPoints);
+        {         
             return false;
         }
     }
     // Método para gerenciar o BulletTime
-    public void BulletTime()
-    {
-        // Lógica para ativar/desativar BulletTime
-    }
 
     // Método para gerenciar um combo de pontos
-    private void HandleCombo(int targetPoints)
+    public void HandleCombo(int targetPoints)
     {
         totalHits++;
 
@@ -149,6 +151,7 @@ public class GerenciadorFase : MonoBehaviour
         totalHits = 0;
         UpdateDisplays();
     }
+    
     private void UpdateDisplays()
     {
         // Atualiza o texto do display de pontos
@@ -167,28 +170,40 @@ public class GerenciadorFase : MonoBehaviour
 
     public void HandleWin(EnemyControler target)
     {
-        CancelSlowmotion();
-        Camera mainCamera = Camera.main;
-        if (mainCamera != null)
+        CinemachineVirtualCamera virtualCamera = FindFirstObjectByType<CinemachineVirtualCamera>();
+        if (virtualCamera != null)
         {
-            Vector3 originalPosition = mainCamera.transform.position;
-            Quaternion originalRotation = mainCamera.transform.rotation;
-
-            mainCamera.transform.DOMove(originalPosition + new Vector3(0, 0, -2f), 0.5f).SetEase(Ease.OutQuad);
-            mainCamera.transform.DORotate(originalRotation * new Vector3(0, 0, 8f), 0.5f).SetEase(Ease.OutQuad).OnComplete(() =>
+            float originalOrthoSize = virtualCamera.m_Lens.OrthographicSize;
+            float originalDutch = virtualCamera.m_Lens.Dutch;
+            Sequence cameraSequence = DOTween.Sequence();
+            Cinemachine3rdPersonFollow thirdPersonFollow = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+            if(thirdPersonFollow != null)
             {
-                // Destrói o target após a animação
+                thirdPersonFollow.Damping.x = 0.5f;
+                thirdPersonFollow.Damping.y = 0.5f;
+                thirdPersonFollow.Damping.z = 0.5f;
+
+            }
+       
+
+            cameraSequence
+               .Join(DOTween.To(() => virtualCamera.m_Lens.Dutch, x => virtualCamera.m_Lens.Dutch = x, -12f, 0.1f))
+               .Join(DOTween.To(() => virtualCamera.m_Lens.OrthographicSize, x => virtualCamera.m_Lens.OrthographicSize = x, 6f, 0.1f))
+               .OnComplete(() =>
+            {
                 if (target != null)
                 {
                     Destroy(target.gameObject);
                 }
 
+                CancelSlowmotion();
                 ResetInterface controlerReset = Ui_State.GetComponent<ResetInterface>();
                 if (controlerReset != null)
                 {
                     controlerReset.VictoryModal();
                 }
             });
+
         }
         else
         {
@@ -210,7 +225,7 @@ public class GerenciadorFase : MonoBehaviour
     private void ValidateNextTarget()
     {
         TargetType proximaNota = GetNextTarget(currentTarget);
-
+        Debug.Log("Proxima nota:" + proximaNota);
         if (proximaNota != 0)
         {
             bool haveEnemy = false;

@@ -114,14 +114,16 @@ public class LifeControler : MonoBehaviour
             EnemyControler enemy = GetComponent<EnemyControler>();
             if (enemy != null)
             {
-
+                Debug.Log("Alvo é valido ? (Dentro do ValidateDmgTypeByTarget - " + gameObject);
                 bool isValid = lvlControler.ValidateTarget(enemy);
-
+                Debug.Log("Alvo é valido ? (Dentro do ValidateDmgTypeByTarget - " + isValid);
                 if (isValid)
                 {
                     lvlControler.DoSlowmotion();
 
                     bool isLastEnemy = lvlControler.ValidateLastEnemy(enemy);
+                    lvlControler.HandleCombo(enemy.deathPoints);
+                    Debug.Log("Ultimo inimigo: " + isLastEnemy);
                     if (!isLastEnemy)
                     {
                         FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Teleport);
@@ -130,6 +132,7 @@ public class LifeControler : MonoBehaviour
                     else
                     {
                         HandleDamege(999);
+                        FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Teleport);
                         lvlControler.HandleWin(enemy);
                     }
 

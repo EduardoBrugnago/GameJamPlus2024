@@ -20,7 +20,8 @@ public class Teleporter : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Trow);
         PlayerShooting playerShooting = player.GetComponent<PlayerShooting>();
-        if(playerShooting != null)
+        gerenciadorFase = FindFirstObjectByType<GerenciadorFase>();
+        if (playerShooting != null)
         {
             collisionTimeLimit = playerShooting.teleportMaxDistance / playerShooting.teleportSpeed;
         } 
@@ -77,7 +78,8 @@ public class Teleporter : MonoBehaviour
                                    playerController.timerBar.transform.DOScale(new Vector3(1f, 1f, 1f), 0.5f);
                                });
                         }
-                    } else
+                    } 
+                    else
                     {
                         if(gerenciadorFase != null)
                         {

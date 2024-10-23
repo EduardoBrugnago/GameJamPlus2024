@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -168,6 +169,10 @@ public class PlayerController : MonoBehaviour
         if (!onAction)
         {
             FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.DmgPlayer);
+            feedbackTarget.material.DOFloat(1f, "_HitEffectBlend", 0.25f).OnComplete(() =>
+            {
+                feedbackTarget.material.DOFloat(0f, "_HitEffectBlend", 0.25f);
+            });
             health -= dmg;
             if (health <= 0)
             {

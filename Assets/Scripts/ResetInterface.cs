@@ -102,7 +102,6 @@ public class ResetInterface : MonoBehaviour
     }
     public void Reset(string msg)
     {
-        Debug.Log(movimentControler + "  - " + msg);
         if (movimentControler != null)
         {
             movimentControler.onAction = true;
@@ -116,7 +115,7 @@ public class ResetInterface : MonoBehaviour
         bgTransaction.anchoredPosition = new Vector2(startPositionX, bgTransaction.anchoredPosition.y);
         bgTransaction.gameObject.SetActive(true);
         gameObject.SetActive(true);
-        // Move bgTransaction para o centro do canvas
+
         DOVirtual.DelayedCall(0.5f,() => { bgTransaction.DOAnchorPosX(0, 1f).OnComplete(() =>
             {
                 // Ativa textTime e faz o fade in
@@ -150,6 +149,9 @@ public class ResetInterface : MonoBehaviour
 
     public void VictoryModal()
     {
+        resetTime.gameObject.SetActive(false);
+        resetTime.alpha = 0; 
+
         if (movimentControler != null)
         {
             movimentControler.onAction = true;

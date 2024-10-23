@@ -15,6 +15,7 @@ Material:
   - CHANGECOLOR2_ON
   - CHANGECOLOR3_ON
   - CHANGECOLOR_ON
+  - HITEFFECT_ON
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -119,7 +120,7 @@ Material:
     - _FlickerFreq: 0.2
     - _FlickerPercent: 0.05
     - _GhostBlend: 1
-    - _GhostColorBoost: 1
+    - _GhostColorBoost: 3.04
     - _GhostTransparency: 0
     - _GlitchAmount: 3
     - _GlitchSize: 1
@@ -139,7 +140,7 @@ Material:
     - _GreyscaleOutline: 0
     - _HandDrawnAmount: 10
     - _HandDrawnSpeed: 5
-    - _HitEffectBlend: 1
+    - _HitEffectBlend: 0
     - _HitEffectGlow: 5
     - _HologramBlend: 1
     - _HologramMaxAlpha: 0.75
