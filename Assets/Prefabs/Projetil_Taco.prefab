@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8416392820732829427}
   - component: {fileID: 5141234440086109593}
   - component: {fileID: -3872188698433904919}
-  - component: {fileID: 66796577717833160}
+  - component: {fileID: 8308556951664878748}
   m_Layer: 8
   m_Name: Projetil_Taco
   m_TagString: Untagged
@@ -131,8 +131,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &66796577717833160
-BoxCollider2D:
+--- !u!58 &8308556951664878748
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -166,14 +166,4 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8125, y: 0.8125}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.4464596

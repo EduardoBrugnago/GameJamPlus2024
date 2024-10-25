@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 public class LifeControler : MonoBehaviour
 {
     public int health = 2;
@@ -17,6 +18,7 @@ public class LifeControler : MonoBehaviour
     private float pushDistance = 4f;
     private float pushSpeed = 6f;
     public GameObject Explosion;
+    public ShadowCaster2D shadowCaster;
     void Update()
     {
         if (shouldMove && objectToMove != null)
@@ -43,6 +45,7 @@ public class LifeControler : MonoBehaviour
 
     private void Start()
     {
+        shadowCaster = GetComponent<ShadowCaster2D>();
         col = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         animationRenderer = GetComponent<Animator>();
@@ -69,6 +72,10 @@ public class LifeControler : MonoBehaviour
             col.enabled = false;
         if (rb != null)
             rb.simulated = false;
+        if(shadowCaster != null)
+        {
+            shadowCaster.enabled = false;
+        }
 
         if (animationRenderer != null)
         {

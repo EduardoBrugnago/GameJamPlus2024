@@ -7,9 +7,10 @@ using DG.Tweening;
 public class Teleporter : MonoBehaviour
 {
     public float teleportDistance = 2.0f;
+    public float maxDistance = 2f;
     private Vector2 lastPosition;
     private bool hasCollided = false;
-    public float maxDistance = 2f;
+    
 
     private float collisionTimeLimit = 2f;
     private GameObject player;
