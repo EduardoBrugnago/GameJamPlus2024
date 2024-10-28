@@ -11,6 +11,7 @@ public class ResetInterface : MonoBehaviour
     public TextMeshProUGUI resetText;
     public PlayerController movimentControler;
 
+
     public RectTransform bgTransaction;
     public CanvasGroup textTime;
 
@@ -151,7 +152,7 @@ public class ResetInterface : MonoBehaviour
     {
         resetTime.gameObject.SetActive(false);
         resetTime.alpha = 0; 
-
+       
         if (movimentControler != null)
         {
             movimentControler.onAction = true;
@@ -170,13 +171,18 @@ public class ResetInterface : MonoBehaviour
             anim.Func_PlayUIAnim();
         }
         FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.End);
-        victoryText.DOFade(1, 1f).OnComplete(() =>
+        victoryText.DOFade(1, 1.2f).OnComplete(() =>
         {
-            victoryText.DOFade(0, 1f).OnComplete(() =>
+            victoryText.DOFade(0, 1.2f).OnComplete(() =>
             {
                 if (movimentControler != null)
                 {
                     FindFirstObjectByType<ControlerLevels>().LoadNextScene();
+
+                    if (movimentControler != null)
+                    {
+                        movimentControler.DisablePlayerControl(true);
+                    }
                 }
             });
         });

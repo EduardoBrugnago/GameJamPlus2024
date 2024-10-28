@@ -28,6 +28,8 @@ public class GerenciadorFase : MonoBehaviour
     private int comboHitNeeded = 3;
     private int totalHits = 0;
     private GameObject player;
+    public PlayerController playerController;
+
     public TextMeshProUGUI pointsDisplay;
     public TextMeshProUGUI comboDisplay;
     public GameObject Ui_State;
@@ -85,8 +87,11 @@ public class GerenciadorFase : MonoBehaviour
                 }
             }
         }
-
-
+    
+        if(player != null)
+        {
+            playerController = player.GetComponent<PlayerController>();
+        }
     }
 
     public bool ValidateTarget(EnemyControler target)
@@ -170,6 +175,11 @@ public class GerenciadorFase : MonoBehaviour
 
     public void HandleWin(EnemyControler target)
     {
+        if(playerController == null)
+        {
+            playerController.DisablePlayerControl(true);
+        }
+
         CinemachineVirtualCamera virtualCamera = FindFirstObjectByType<CinemachineVirtualCamera>();
         if (virtualCamera != null)
         {
@@ -187,8 +197,8 @@ public class GerenciadorFase : MonoBehaviour
        
 
             cameraSequence
-               .Join(DOTween.To(() => virtualCamera.m_Lens.Dutch, x => virtualCamera.m_Lens.Dutch = x, -12f, 0.1f))
-               .Join(DOTween.To(() => virtualCamera.m_Lens.OrthographicSize, x => virtualCamera.m_Lens.OrthographicSize = x, 6f, 0.1f))
+               .Join(DOTween.To(() => virtualCamera.m_Lens.Dutch, x => virtualCamera.m_Lens.Dutch = x, -12f, 0.13f))
+               .Join(DOTween.To(() => virtualCamera.m_Lens.OrthographicSize, x => virtualCamera.m_Lens.OrthographicSize = x, 6f, 0.13f))
                .OnComplete(() =>
             {
                 if (target != null)

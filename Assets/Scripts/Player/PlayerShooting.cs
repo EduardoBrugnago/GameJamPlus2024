@@ -36,18 +36,7 @@ public class PlayerShooting : MonoBehaviour
             {
                 // Captura da posição do mouse (para mira com mouse)
                 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-
-                // Mira com controle (stick analógico direito)
-                //float aimHorizontal = Input.GetAxisRaw("RightStickX");
-                //float aimVertical = Input.GetAxisRaw("RightStickY");
-
-                //// Se houver entrada no stick direito, define a direção de mira com controle
-                //if (Mathf.Abs(aimHorizontal) > 0.1f || Mathf.Abs(aimVertical) > 0.1f)
-                //{
-                //    aimDirection = new Vector2(aimHorizontal, aimVertical).normalized;
-                //}
-
-                // Se clicar com o mouse ou pressionar o botão de tiro, tenta atirar
+                aimDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
                 if (Input.GetButtonDown("Fire1") && canShoot)
                 {
@@ -64,14 +53,32 @@ public class PlayerShooting : MonoBehaviour
  
     }
 
+    private Coroutine shootCoroutine;
+
+    public void StartShooting()
+    {
+     
+        shootCoroutine = StartCoroutine(ShootCoroutine());
+    }
+
     IEnumerator ShootCoroutine()
     {
         Shoot();  // Função que cria o projétil e o dispara
         shotsFired++;
-        yield return new WaitForSeconds(timeBetweenShots);  // Espera 2 segundos entre cada tiro
+        yield return new WaitForSeconds(timeBetweenShots);  // Espera X segundos entre cada tiro
 
         canShoot = true; // Permite que o jogador possa atirar novamente
     }
+
+    public void CancelShoot()
+    {
+        if (shootCoroutine != null)
+        {
+            StopCoroutine(shootCoroutine);
+            shootCoroutine = null;
+        }
+    }
+
 
     void Shoot()
     {
@@ -101,20 +108,20 @@ public class PlayerShooting : MonoBehaviour
         // Calcula a direção de mira
         Vector2 fireDirection = (mousePos - (Vector2)firePoint.position).normalized;
 
-        // Se está usando controle, sobrepõe a direção de mira
         if (aimDirection.magnitude > 0.1f)
         {
-            fireDirection = aimDirection;
+            fireDirection = aimDirection.normalized;
         }
 
         Vector2 spawnPosition = firePoint.position;
- 
-        Collider2D hitCollider = Physics2D.OverlapCircle(spawnPosition, 0.1f); // Altere o raio conforme necessário
-        if (hitCollider != null && hitCollider.CompareTag("Player") == false &&  hitCollider.CompareTag("Enemy") == false && hitCollider.CompareTag("Destructible") == false)
+
+        Collider2D hitCollider = Physics2D.OverlapCircle(spawnPosition, 0.1f); // Ajuste o raio conforme necessário
+        if (hitCollider != null && hitCollider.CompareTag("Player") == false && hitCollider.CompareTag("Enemy") == false && hitCollider.CompareTag("Destructible") == false)
         {
             canShoot = true;
             return;
         }
+
         // Cria o projétil na posição do ponto de disparo e com a rotação correta
         GameObject projectile = Instantiate(teleportPrefab, firePoint.position, Quaternion.identity);
 

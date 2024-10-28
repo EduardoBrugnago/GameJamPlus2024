@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     public SpriteRenderer feedbackTarget;
     public Image killColor;
     public ResetInterface resetInterface;
-
+    public PlayerShooting shooterControler;
     void Awake()
     {
         // Pegando o Rigidbody2D automaticamente do pr�prio player
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
         }
 
         circleTransform = transform.Find("Circle");
-
+        shooterControler = GetComponent<PlayerShooting>();
         //GameObject resetCanvas = GameObject.FindGameObjectWithTag("Reset");
         //if (resetCanvas != null)
         //{
@@ -60,69 +60,45 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
-        // Movimenta��o usando teclado ou controle
+        // Movimentação usando teclado ou controle
         if (!onAction)
         {
-            //movement.x = Input.GetAxisRaw("Horizontal");  // Eixo Horizontal (WASD, setas, ou stick anal�gico esquerdo)
-            //movement.y = Input.GetAxisRaw("Vertical");    // Eixo Vertical
-
-            // Captura da posi��o do mouse (para mira com mouse)
+            // Captura a posição do mouse em coordenadas de mundo
             mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-            //// Mira com controle (stick anal�gico direito)
-            //float aimHorizontal = Input.GetAxis("RightStickX");
-            //float aimVertical = Input.GetAxis("RightStickY");
+            // Captura a direção de mira com o controle, caso esteja em uso
+            aimDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-            //// Se houver entrada no stick direito, define a dire��o de mira com controle
-            //if (Mathf.Abs(aimHorizontal) > 0.1f || Mathf.Abs(aimVertical) > 0.1f)
-            //{
-            //    aimDirection = new Vector2(aimHorizontal, aimVertical).normalized;
-            //}
             if (startTimer)
             {
                 HandleTimer();
             }
         }
-
-
-
-
     }
+
     void FixedUpdate()
     {
         if (!onAction)
         {
-            /*if (movement.magnitude > 0)
+            Vector2 lookDir;
+            
+            if (aimDirection.magnitude > 0.1f)
             {
-                movement = movement.normalized;
-            }
-
-            // Se n�o houver movimento, zerar a velocidade
-            if (movement.magnitude == 0)
-            {
-                rb.velocity = Vector2.zero;  // Zera a velocidade do Rigidbody2D para parar o movimento imediatamente
+                // Normaliza a direção do analógico esquerdo para garantir precisão
+                lookDir = aimDirection.normalized;
             }
             else
             {
-                // Aplicar movimenta��o diretamente � posi��o
-                rb.velocity = movement * moveSpeed;
-            }
-            */
-            // Mira com o mouse (teclado + mouse)
-            Vector2 lookDir = mousePos - rb.position;
-
-            // Se est� usando controle, sobrep�e a dire��o de mira
-            if (aimDirection.magnitude > 0.1f)
-            {
-                lookDir = aimDirection;
+                // Alternativamente, use a posição do mouse se o analógico não estiver em uso
+                lookDir = mousePos - rb.position;
             }
 
-            // Calcular o �ngulo e aplicar rota��o
+            // Calcula o ângulo para rotação completa em 360 graus
             float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+
+            // Aplica a rotação no transform
             circleTransform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
-
     }
 
     public void HandleTimer()
@@ -224,6 +200,16 @@ public class PlayerController : MonoBehaviour
                     killColor.color = Color.yellow; // Cor para Nota 1
                     break;
             }
+        }
+    }
+    
+    public void DisablePlayerControl(bool canDoThing)
+    {
+        onAction = !canDoThing;
+        
+        if(shooterControler != null)
+        {
+            shooterControler.canShoot = canDoThing;
         }
     }
 }

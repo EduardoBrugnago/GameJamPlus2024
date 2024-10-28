@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1840792231093754338}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.252, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arrowPivot: {fileID: 1840792231093754338}
   arrowHead: {fileID: 4939432688980073911}
-  origin: {fileID: 3290667636452578489}
+  origin: {fileID: 7822684883254243870}
   maxDistance: 20
   collisionMask:
     serializedVersion: 2

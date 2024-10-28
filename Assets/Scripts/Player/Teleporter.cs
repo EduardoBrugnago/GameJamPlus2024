@@ -52,8 +52,8 @@ public class Teleporter : MonoBehaviour
                 PlayerShooting playerShooting = player.GetComponent<PlayerShooting>();
                 if (playerShooting != null)
                 {
-                    playerShooting.canShoot = true;
 
+                    playerShooting.canShoot = true;
                     if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Destructible"))
                     {
                         player.transform.position = collision.gameObject.transform.position;
@@ -90,9 +90,9 @@ public class Teleporter : MonoBehaviour
                         FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Teleport2);
                         player.transform.position = lastPosition;
                     }
-                }
 
-               
+                   
+                }    
 
             }
 

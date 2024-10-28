@@ -110,8 +110,6 @@ public class LifeControler : MonoBehaviour
 
     public void ValidateDmgTypeByTarget(bool isTeleport, int dmg, Vector2? dir)
     {
-
-
         if (!isTeleport)
         {
             HandleDamege(dmg);
@@ -124,6 +122,8 @@ public class LifeControler : MonoBehaviour
                 Debug.Log("Alvo é valido ? (Dentro do ValidateDmgTypeByTarget - " + gameObject);
                 bool isValid = lvlControler.ValidateTarget(enemy);
                 Debug.Log("Alvo é valido ? (Dentro do ValidateDmgTypeByTarget - " + isValid);
+                PlayerController playerControl = player.GetComponent<PlayerController>();
+
                 if (isValid)
                 {
                     lvlControler.DoSlowmotion();
@@ -138,6 +138,10 @@ public class LifeControler : MonoBehaviour
                     }
                     else
                     {
+                        if (playerControl != null)
+                        {
+                            playerControl.DisablePlayerControl(false);
+                        }
                         HandleDamege(999);
                         FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Teleport);
                         lvlControler.HandleWin(enemy);
@@ -146,7 +150,7 @@ public class LifeControler : MonoBehaviour
                 }
                 else
                 {
-                    PlayerController playerControl = player.GetComponent<PlayerController>();
+                  
                     if (playerControl != null)
                     {
                         playerControl.HandleDeath("You failed the choreography");

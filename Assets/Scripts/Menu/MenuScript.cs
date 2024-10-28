@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MenuScript : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class MenuScript : MonoBehaviour
     public GameObject creditos;
     public GameObject opcoes;
     public GameObject imgLogo;
-
+    public GameObject firstInputOptions;
+    public GameObject firstMenuOptions;
+    public GameObject backButton;
     private void Awake()
     {
         FindFirstObjectByType<MusicControler>().PlayMusic(MusicControler.GameState.Menu);
@@ -27,12 +30,14 @@ public class MenuScript : MonoBehaviour
     {
         DisableAll();
         opcoes.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(firstInputOptions); 
     }
 
     public void GoToCreditos()
     {
         DisableAll();
         creditos.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(backButton);
     }
 
     public void GoToMenu()
@@ -40,6 +45,7 @@ public class MenuScript : MonoBehaviour
         DisableAll();
         menu.SetActive(true);
         imgLogo.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(firstMenuOptions);
     }
 
     void DisableAll()

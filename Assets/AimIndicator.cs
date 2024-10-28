@@ -39,47 +39,47 @@ public class AimIndicator : MonoBehaviour
             }
         }
 
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, Camera.main.nearClipPlane));
+        // Captura a direção do analógico esquerdo
+        Vector3 aimDirection = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
 
-        // Define a posição Z como a mesma do objeto de origem
-        mousePosition.z = origin.position.z;
+        Vector3 targetPosition;
+        if (aimDirection.magnitude > 0.1f) // Se o joystick estiver em uso
+        {
+            // Define a posição alvo em relação ao joystick, limitada pela distância máxima
+            targetPosition = origin.position + aimDirection.normalized * maxDistance;
+        }
+        else
+        {
+            // Usa a posição do mouse caso o joystick não esteja em uso
+            targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
+            targetPosition.z = origin.position.z;
+        }
 
-        // Calcula a direção da seta
-        Vector3 direction = (mousePosition - origin.position).normalized;
-
-        // Calcula a distância entre a origem e o mouse
-        float distanceToMouse = Vector3.Distance(origin.position, mousePosition);
-
-        // Limita a distância ao alcance máximo
-        float distance = Mathf.Min(distanceToMouse, maxDistance);
+        // Calcula a direção e distância para o ponto alvo
+        Vector3 direction = (targetPosition - origin.position).normalized;
+        float distanceToTarget = Vector3.Distance(origin.position, targetPosition);
+        float distance = Mathf.Min(distanceToTarget, maxDistance);
 
         // Realiza o Raycast para verificar colisões
         float arrowHeadWidth = arrowHeadSpriteRenderer.bounds.size.x / 2f;
-
-        // Realiza o Raycast com ajuste da largura em X
         RaycastHit2D hit = Physics2D.CircleCast(origin.position, arrowHeadWidth, direction, distance, collisionMask);
 
-        // Se houver colisão e o mouse estiver além da colisão, ajusta a distância até o ponto de colisão
-        if (hit.collider != null && distanceToMouse >= hit.distance)
+        // Se houver colisão, ajusta a distância até o ponto de colisão
+        if (hit.collider != null && distanceToTarget >= hit.distance)
         {
             distance = hit.distance;
         }
 
-
+        // Define a posição da ponta da seta
         arrowPivot.transform.position = origin.position + direction * distance;
 
-        Vector2 lookDir = mousePosition - origin.position;
-
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-
+        // Calcula o ângulo e aplica a rotação da seta
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
         arrowPivot.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
-        // Define o ponto inicial e final da linha, ajustando o ponto final em Y
+        // Define o ponto inicial e final da linha
         lineRenderer.SetPosition(0, origin.position);
         lineRenderer.SetPosition(1, arrowPivot.transform.position);
-
-
     }
 
 }

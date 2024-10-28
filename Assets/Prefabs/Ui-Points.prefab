@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6738711177931621366}
   - component: {fileID: 1853991175494193217}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Ui-Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
