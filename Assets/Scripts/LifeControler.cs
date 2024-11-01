@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 public class LifeControler : MonoBehaviour
@@ -72,6 +73,7 @@ public class LifeControler : MonoBehaviour
             col.enabled = false;
         if (rb != null)
             rb.simulated = false;
+
         if(shadowCaster != null)
         {
             shadowCaster.enabled = false;
@@ -93,6 +95,7 @@ public class LifeControler : MonoBehaviour
 
         if (Explosion != null)
         {
+
             GameObject GO = Instantiate(Explosion, transform.position, Quaternion.identity);
             Destroy(GO, 1f);
 
@@ -119,9 +122,7 @@ public class LifeControler : MonoBehaviour
             EnemyControler enemy = GetComponent<EnemyControler>();
             if (enemy != null)
             {
-                Debug.Log("Alvo é valido ? (Dentro do ValidateDmgTypeByTarget - " + gameObject);
                 bool isValid = lvlControler.ValidateTarget(enemy);
-                Debug.Log("Alvo é valido ? (Dentro do ValidateDmgTypeByTarget - " + isValid);
                 PlayerController playerControl = player.GetComponent<PlayerController>();
 
                 if (isValid)
@@ -130,18 +131,28 @@ public class LifeControler : MonoBehaviour
 
                     bool isLastEnemy = lvlControler.ValidateLastEnemy(enemy);
                     lvlControler.HandleCombo(enemy.deathPoints);
-                    Debug.Log("Ultimo inimigo: " + isLastEnemy);
                     if (!isLastEnemy)
                     {
+                        if (player != null)
+                        {
+                            CinemachineImpulseSource impPlayer = player.GetComponent<CinemachineImpulseSource>();
+                           
+                            if (impPlayer != null)
+                            {
+                                CameraShakeBh.instance.CameraShake(impPlayer);
+                            }
+                        }
                         FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Teleport);
                         HandleDamege(999);
                     }
                     else
                     {
+
                         if (playerControl != null)
                         {
                             playerControl.DisablePlayerControl(false);
                         }
+                        
                         HandleDamege(999);
                         FindFirstObjectByType<PlayerSounds>().PlaySfx(PlayerSounds.SfxState.Teleport);
                         lvlControler.HandleWin(enemy);

@@ -152,6 +152,7 @@ public class GerenciadorFase : MonoBehaviour
 
     public void LostCombo()
     {
+        Debug.Log("aasdasdasd");
         currentCombo = 1;
         totalHits = 0;
         UpdateDisplays();

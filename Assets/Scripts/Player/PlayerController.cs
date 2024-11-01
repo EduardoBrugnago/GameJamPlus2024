@@ -1,3 +1,4 @@
+using Cinemachine;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -51,6 +52,12 @@ public class PlayerController : MonoBehaviour
 
         circleTransform = transform.Find("Circle");
         shooterControler = GetComponent<PlayerShooting>();
+        CinemachineVirtualCamera virtualCamera = FindFirstObjectByType<CinemachineVirtualCamera>();
+        if (virtualCamera != null)
+        {
+            virtualCamera.Follow = transform;
+        }
+
         //GameObject resetCanvas = GameObject.FindGameObjectWithTag("Reset");
         //if (resetCanvas != null)
         //{
