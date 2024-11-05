@@ -21,8 +21,11 @@ public class PlayerShooting : MonoBehaviour
     public float teleportSpeed = 10f;
     PlayerController controlerPlayer;
     public GerenciadorFase gerenciadorFase;
+    ReplayControler replayControler;
+
     void Start()
     {
+        replayControler = FindFirstObjectByType<ReplayControler>();
         controlerPlayer = GetComponent<PlayerController>();
         cam = Camera.main;
         gerenciadorFase  = FindFirstObjectByType<GerenciadorFase>();
@@ -80,7 +83,7 @@ public class PlayerShooting : MonoBehaviour
     }
 
 
-    void Shoot()
+    public void Shoot()
     {
         // Calcula a direção de mira
         Vector2 fireDirection = (mousePos - (Vector2)firePoint.position).normalized;
@@ -99,7 +102,9 @@ public class PlayerShooting : MonoBehaviour
         rb.velocity = fireDirection * projectileSpeed;
 
         // Ajusta a rotação do projétil para apontar na direção que está sendo disparado
+        
         float angle = Mathf.Atan2(fireDirection.y, fireDirection.x) * Mathf.Rad2Deg;
+        
         projectile.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
@@ -107,6 +112,39 @@ public class PlayerShooting : MonoBehaviour
     {
         // Calcula a direção de mira
         Vector2 fireDirection = (mousePos - (Vector2)firePoint.position).normalized;
+
+        if (aimDirection.magnitude > 0.1f)
+        {
+            fireDirection = aimDirection.normalized;
+        }
+
+        Vector2 spawnPosition = firePoint.position;
+
+        Collider2D hitCollider = Physics2D.OverlapCircle(spawnPosition, 0.1f); // Ajuste o raio conforme necessário
+        if (hitCollider != null && hitCollider.CompareTag("Player") == false && hitCollider.CompareTag("Enemy") == false && hitCollider.CompareTag("Destructible") == false)
+        {
+            canShoot = true;
+            return;
+        }
+
+        // Cria o projétil na posição do ponto de disparo e com a rotação correta
+        GameObject projectile = Instantiate(teleportPrefab, firePoint.position, Quaternion.identity);
+
+        // Adiciona velocidade ao projétil
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        rb.velocity = fireDirection * teleportSpeed;
+
+        // Ajusta a rotação do projétil para apontar na direção que está sendo disparado
+        float angle = Mathf.Atan2(fireDirection.y, fireDirection.x) * Mathf.Rad2Deg;
+        Quaternion player_rot = gameObject.GetComponent<PlayerController>().circleTransform.rotation;
+        replayControler.SaveFrameData(gameObject.transform.position, player_rot, fireDirection);
+        projectile.transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+
+    public void FakeTeleport(Vector2 replayAngle)
+    {
+        // Calcula a direção de mira
+        Vector2 fireDirection = replayAngle;
 
         if (aimDirection.magnitude > 0.1f)
         {

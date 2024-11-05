@@ -131,6 +131,7 @@ public class LifeControler : MonoBehaviour
 
                     bool isLastEnemy = lvlControler.ValidateLastEnemy(enemy);
                     lvlControler.HandleCombo(enemy.deathPoints);
+
                     if (!isLastEnemy)
                     {
                         if (player != null)

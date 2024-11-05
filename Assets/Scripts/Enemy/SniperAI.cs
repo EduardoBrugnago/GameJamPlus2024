@@ -10,10 +10,10 @@ public class SniperAI : EnemyAI
 
     protected override IEnumerator Attack()
     {
-        Debug.Log(1);
+
         if (Vector2.Distance(player.position, transform.position) > attackRange)
         {
-            Debug.Log(2);
+
             // Atira no jogador
             ShootProjectile();
         }
