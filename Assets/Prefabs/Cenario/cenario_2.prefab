@@ -151,6 +151,7 @@ MonoBehaviour:
   lvlControler: {fileID: 0}
   deadSprite: {fileID: -7413405777633413208, guid: 6bc374d1516a3f449b39eae6b5febf71, type: 3}
   Explosion: {fileID: 0}
+  shadowCaster: {fileID: 0}
 --- !u!114 &-6358733561987625478
 MonoBehaviour:
   m_ObjectHideFlags: 0

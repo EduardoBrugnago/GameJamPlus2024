@@ -78,7 +78,7 @@ public class AimIndicator : MonoBehaviour
         arrowPivot.transform.rotation = Quaternion.Euler(0f, 0f, angle);
 
         // Define o ponto inicial e final da linha
-        lineRenderer.SetPosition(0, origin.position);
+        lineRenderer.SetPosition(0, gameObject.transform.position);
         lineRenderer.SetPosition(1, arrowPivot.transform.position);
     }
 

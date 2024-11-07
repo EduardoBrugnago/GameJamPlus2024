@@ -45,15 +45,14 @@ public class GerenciadorFase : MonoBehaviour
 
     public void DoSlowmotion()
     {
-        if (!replayControler.isReplay)
-        {
+
             CancelSlowmotion();
 
             Time.timeScale = slowdownFactor;
             Time.fixedDeltaTime = Time.timeScale * .03f;
 
             slowmotionCoroutine = StartCoroutine(SlowmotionTimer());
-        }   
+    
     }
 
     IEnumerator SlowmotionTimer()
@@ -226,14 +225,15 @@ public class GerenciadorFase : MonoBehaviour
                 }
 
                 CancelSlowmotion();
-                virtualCamera.m_Lens.Dutch = originalDutch;
-                virtualCamera.m_Lens.OrthographicSize = originalOrthoSize;
+                //virtualCamera.m_Lens.Dutch = originalDutch;
+                //virtualCamera.m_Lens.OrthographicSize = originalOrthoSize;
 
                 // Chama o StartReplay imediatamente após o ajuste
                 ResetInterface controlerReset = Ui_State.GetComponent<ResetInterface>();
                 if (controlerReset != null)
                 {
-                    replayControler.StartReplay();
+                    //replayControler.StartReplay();
+                    controlerReset.VictoryModal();
                 }
             });
 

@@ -123,6 +123,27 @@ public class ReplayControler : MonoBehaviour
         }
     }
 
+    public void RestoreObjects()
+    {
+        GameObject[] destructionObjects = GameObject.FindGameObjectsWithTag("Destructible");
+
+        // Itera por cada objeto encontrado
+        foreach (GameObject obj in destructionObjects)
+        {
+            // Pega o script LifeController no objeto
+            LifeControler lifeController = obj.GetComponent<LifeControler>();
+
+            // Verifica se o script foi encontrado antes de chamar a função
+            if (lifeController != null)
+            {
+                lifeController.ResetState();
+            }
+            else
+            {
+                Debug.LogWarning($"LifeController não encontrado no objeto {obj.name}");
+            }
+        }
+    }
     private IEnumerator ReplayMovement()
     {
         for (int i = 0; i < playerRotation.Count; i++)
@@ -133,6 +154,7 @@ public class ReplayControler : MonoBehaviour
             if (i == 0)
             {
                 RestoreEnemies();
+                RestoreObjects();
                 player.transform.position = playerPosition;
             }
 

@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 9176075532137323349, guid: 6bc374d1516a3f449b39eae6b5febf71, type: 3}
+  m_Sprite: {fileID: -958645246, guid: 29c935aeb1346c64090cac3341574073, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -176,7 +176,7 @@ MonoBehaviour:
     m_FlipX: 0
     m_FlipY: 0
     m_InitialTrim: 0.05
-  m_CastingOption: 2
+  m_CastingOption: 3
   m_PreviousTrimEdge: 0
   m_PreviousEdgeProcessing: -1
   m_PreviousShadowCastingSource: -1
