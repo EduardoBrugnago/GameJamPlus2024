@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     public float maxDeathTimer = 5f;
     public Slider timerBar;
     public bool startTimer = false;
-    private Transform circleTransform;
+    public Transform circleTransform;
     public SpriteRenderer feedbackTarget;
     public Image killColor;
     public ResetInterface resetInterface;

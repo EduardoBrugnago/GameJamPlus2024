@@ -45,7 +45,7 @@ public class ResetInterface : MonoBehaviour
         resetTime.alpha = 0;
 
         bool firstLoad = FindFirstObjectByType<ControlerLevels>().firstLoad;
-        Debug.Log(firstLoad);
+
         if (!firstLoad)
         {
             startContainer.gameObject.SetActive(true);

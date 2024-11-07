@@ -149,8 +149,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1
   lvlControler: {fileID: 0}
-  deadSprite: {fileID: -355143774869750978, guid: 6bc374d1516a3f449b39eae6b5febf71, type: 3}
+  deadSprite: {fileID: 2045488167, guid: 29c935aeb1346c64090cac3341574073, type: 3}
   Explosion: {fileID: 0}
+  shadowCaster: {fileID: 0}
 --- !u!114 &7906759134599074365
 MonoBehaviour:
   m_ObjectHideFlags: 0

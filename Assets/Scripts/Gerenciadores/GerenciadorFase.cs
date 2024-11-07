@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using static UnityEngine.InputSystem.LowLevel.InputEventTrace;
 public enum TargetType
 {
     None,
@@ -40,14 +41,18 @@ public class GerenciadorFase : MonoBehaviour
     public float olfL;
     private Coroutine slowmotionCoroutine;
 
+    ReplayControler replayControler;
+
     public void DoSlowmotion()
     {
-        CancelSlowmotion();
 
-        Time.timeScale = slowdownFactor;
-        Time.fixedDeltaTime = Time.timeScale * .03f;
+            CancelSlowmotion();
 
-        slowmotionCoroutine = StartCoroutine(SlowmotionTimer());
+            Time.timeScale = slowdownFactor;
+            Time.fixedDeltaTime = Time.timeScale * .03f;
+
+            slowmotionCoroutine = StartCoroutine(SlowmotionTimer());
+    
     }
 
     IEnumerator SlowmotionTimer()
@@ -69,6 +74,7 @@ public class GerenciadorFase : MonoBehaviour
 
     void Start()
     {
+        replayControler = FindFirstObjectByType<ReplayControler>();
         oldF = Time.timeScale;
         olfL = Time.fixedDeltaTime;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -96,7 +102,11 @@ public class GerenciadorFase : MonoBehaviour
 
     public bool ValidateTarget(EnemyControler target)
     {
-        Debug.Log("ValidateTarget: " + target.Nota + " - " + currentTarget + " resposta:" + (target.Nota == currentTarget));
+        if (replayControler.isReplay)
+        {
+            return true;
+        }
+
         if (target != null)
         {
             if (target.Nota == currentTarget)
@@ -119,6 +129,11 @@ public class GerenciadorFase : MonoBehaviour
 
     public bool ValidateLastEnemy(EnemyControler target)
     {
+        if (replayControler.isReplay)
+        {
+            return false;
+        }
+
         if (currentIndex >= targetList.Count - 1)
         {
             return true;
@@ -133,26 +148,29 @@ public class GerenciadorFase : MonoBehaviour
     // Método para gerenciar um combo de pontos
     public void HandleCombo(int targetPoints)
     {
-        totalHits++;
-
-        if (totalHits >= comboHitNeeded)
+        if (!replayControler.isReplay)
         {
-            currentCombo++;
-            totalHits = 0;
+            totalHits++;
 
-            if (currentCombo > 4)
-                currentCombo = 4;
+            if (totalHits >= comboHitNeeded)
+            {
+                currentCombo++;
+                totalHits = 0;
+
+                if (currentCombo > 4)
+                    currentCombo = 4;
+            }
+
+            int pontosParaAdicionar = (int)Mathf.Pow(2, currentCombo);
+            currentPoints += pontosParaAdicionar * targetPoints;
+            UpdateDisplays();
+            ValidateNextTarget();
         }
-
-        int pontosParaAdicionar = (int)Mathf.Pow(2, currentCombo);
-        currentPoints += pontosParaAdicionar * targetPoints;
-        UpdateDisplays();
-        ValidateNextTarget();
+        
     }
 
     public void LostCombo()
     {
-        Debug.Log("aasdasdasd");
         currentCombo = 1;
         totalHits = 0;
         UpdateDisplays();
@@ -195,7 +213,6 @@ public class GerenciadorFase : MonoBehaviour
                 thirdPersonFollow.Damping.z = 0.5f;
 
             }
-       
 
             cameraSequence
                .Join(DOTween.To(() => virtualCamera.m_Lens.Dutch, x => virtualCamera.m_Lens.Dutch = x, -12f, 0.13f))
@@ -208,9 +225,14 @@ public class GerenciadorFase : MonoBehaviour
                 }
 
                 CancelSlowmotion();
+                //virtualCamera.m_Lens.Dutch = originalDutch;
+                //virtualCamera.m_Lens.OrthographicSize = originalOrthoSize;
+
+                // Chama o StartReplay imediatamente após o ajuste
                 ResetInterface controlerReset = Ui_State.GetComponent<ResetInterface>();
                 if (controlerReset != null)
                 {
+                    //replayControler.StartReplay();
                     controlerReset.VictoryModal();
                 }
             });
@@ -236,7 +258,7 @@ public class GerenciadorFase : MonoBehaviour
     private void ValidateNextTarget()
     {
         TargetType proximaNota = GetNextTarget(currentTarget);
-        Debug.Log("Proxima nota:" + proximaNota);
+
         if (proximaNota != 0)
         {
             bool haveEnemy = false;
