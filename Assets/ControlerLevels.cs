@@ -43,4 +43,10 @@ public class ControlerLevels : MonoBehaviour
         firstLoad = false;
         SceneManager.LoadScene(scenes[index]);
     }
+
+    public void Reset()
+    {
+        firstLoad = false;
+        currentSceneIndex= 0;
+    }
 }

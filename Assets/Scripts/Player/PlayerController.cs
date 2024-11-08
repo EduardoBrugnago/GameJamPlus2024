@@ -29,8 +29,10 @@ public class PlayerController : MonoBehaviour
     public Image killColor;
     public ResetInterface resetInterface;
     public PlayerShooting shooterControler;
+    public GerenciadorFase gerenciadorFase;
     void Awake()
     {
+        gerenciadorFase = FindFirstObjectByType<GerenciadorFase>();
         // Pegando o Rigidbody2D automaticamente do pr�prio player
         rb = GetComponent<Rigidbody2D>();
 
@@ -65,9 +67,17 @@ public class PlayerController : MonoBehaviour
         //}
     }
 
+
     void Update()
     {
-        // Movimentação usando teclado ou controle
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            DOTween.KillAll();
+            gerenciadorFase.CancelSlowmotion();
+            FindFirstObjectByType<ControlerLevels>().Reset();
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
+        }
+            // Movimentação usando teclado ou controle
         if (!onAction)
         {
             // Captura a posição do mouse em coordenadas de mundo
@@ -85,6 +95,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+
         if (!onAction)
         {
             Vector2 lookDir;
