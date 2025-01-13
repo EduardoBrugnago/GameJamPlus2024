@@ -161,10 +161,12 @@ MonoBehaviour:
   maxDeathTimer: 8
   timerBar: {fileID: 0}
   startTimer: 0
+  circleTransform: {fileID: 0}
   feedbackTarget: {fileID: 1792481953649607605}
   killColor: {fileID: 0}
   resetInterface: {fileID: 0}
   shooterControler: {fileID: 0}
+  gerenciadorFase: {fileID: 0}
 --- !u!114 &2727438007985709992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,14 +314,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   TrowSfx: {fileID: 8300000, guid: e251028744db37d4db14db8d8444a468, type: 3}
-  DmgSfx: {fileID: 8300000, guid: 18c254b1e510aff4c806787d0660f669, type: 3}
+  DmgSfx:
+  - {fileID: 8300000, guid: 300b22c34e497c944819e1e178be01e2, type: 3}
+  - {fileID: 8300000, guid: b206decaae878024cafc8a4e8f2db248, type: 3}
+  - {fileID: 8300000, guid: 21cb6a5604366c841afc103d343b13d7, type: 3}
+  - {fileID: 8300000, guid: f583d5dfca9966d4c9d4753e50883df6, type: 3}
   TeleportSfx: {fileID: 8300000, guid: 300b22c34e497c944819e1e178be01e2, type: 3}
   DeathSfx: {fileID: 8300000, guid: 300b22c34e497c944819e1e178be01e2, type: 3}
   TeleportTwoSfx: {fileID: 8300000, guid: 0b33a3c988382af4b9cc43a8ec987363, type: 3}
   StartSfx: {fileID: 8300000, guid: a853f213aae23f34e8bb6bf95c81617c, type: 3}
   AssSfx: {fileID: 8300000, guid: 25c935a1a53fd224588e065cabc16319, type: 3}
   dmgPlayer: {fileID: 8300000, guid: ba2135abfb3dbf24f8dd2075e4f04de5, type: 3}
-  failSfx: {fileID: 8300000, guid: 96743c945f91e5a4b801aeeb814eeab9, type: 3}
+  failSfx:
+  - {fileID: 8300000, guid: 96743c945f91e5a4b801aeeb814eeab9, type: 3}
+  - {fileID: 8300000, guid: 32478c01224f8bd4ca3bab8623c969a6, type: 3}
+  - {fileID: 8300000, guid: 847bb13691f5583469f0c59dc9f9681e, type: 3}
+  - {fileID: 8300000, guid: b1b948fbaf7261140a1bb8c77a507e1e, type: 3}
+  - {fileID: 8300000, guid: 11a4b589123fbca4fbc5ccb66bfe9da1, type: 3}
   GlassSfx:
   - {fileID: 8300000, guid: cfe7cc976cacfd44bae254012d2a2777, type: 3}
   - {fileID: 8300000, guid: 49eafa4b91c763c42bd6b0ddf1607e3b, type: 3}
