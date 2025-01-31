@@ -318,7 +318,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 300b22c34e497c944819e1e178be01e2, type: 3}
   - {fileID: 8300000, guid: b206decaae878024cafc8a4e8f2db248, type: 3}
   - {fileID: 8300000, guid: 21cb6a5604366c841afc103d343b13d7, type: 3}
-  - {fileID: 8300000, guid: f583d5dfca9966d4c9d4753e50883df6, type: 3}
+  - {fileID: 8300000, guid: b228f696b32ba5842adf282a086fcb76, type: 3}
   TeleportSfx: {fileID: 8300000, guid: 300b22c34e497c944819e1e178be01e2, type: 3}
   DeathSfx: {fileID: 8300000, guid: 300b22c34e497c944819e1e178be01e2, type: 3}
   TeleportTwoSfx: {fileID: 8300000, guid: 0b33a3c988382af4b9cc43a8ec987363, type: 3}
