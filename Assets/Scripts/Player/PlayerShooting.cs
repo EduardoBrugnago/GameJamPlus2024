@@ -58,6 +58,11 @@ public class PlayerShooting : MonoBehaviour
 
     private Coroutine shootCoroutine;
 
+    public void ResetShoot()
+    {
+        canShoot = true;
+        shotsFired = 0;
+    }
     public void StartShooting()
     {
      

@@ -212,10 +212,10 @@ public class PlayerController : MonoBehaviour
                     killColor.color = Color.blue; // Cor para Nota 1
                     break;
                 case TargetType.Fa:
-                    feedbackTarget.material.SetColor("_ColorChangeNewCol", Color.yellow);
+                    feedbackTarget.material.SetColor("_ColorChangeNewCol", new Color(1, 0, 1));
                     //feedbackTarget.material.SetColor("_ColorChangeNewCol2", Color.green);
-                    feedbackTarget.material.SetColor("_ColorChangeNewCol3", Color.yellow);
-                    killColor.color = Color.yellow; // Cor para Nota 1
+                    feedbackTarget.material.SetColor("_ColorChangeNewCol3", new Color(1, 0, 1));
+                    killColor.color = new Color(1, 0, 1); // Cor para Nota 1
                     break;
             }
         }

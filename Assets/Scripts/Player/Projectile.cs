@@ -22,6 +22,9 @@ public class Projectile : MonoBehaviour
             }
 
             Destroy(gameObject);
+        } else if (!collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
         }
     }
 }

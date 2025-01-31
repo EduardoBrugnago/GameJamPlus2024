@@ -32,8 +32,8 @@ public class EnemyControler : MonoBehaviour
                 spriteRenderer.material.SetColor("_ColorChangeNewCol2", Color.blue);
                 break;
             case TargetType.Fa:
-                spriteRenderer.material.SetColor("_ColorChangeNewCol", Color.yellow);
-                spriteRenderer.material.SetColor("_ColorChangeNewCol2", Color.yellow);
+                spriteRenderer.material.SetColor("_ColorChangeNewCol", new Color(1, 0, 1));
+                spriteRenderer.material.SetColor("_ColorChangeNewCol2", new Color(1, 0, 1));
                 break;
             default:
                 spriteRenderer.material.SetColor("_ColorChangeNewCol", Color.red);

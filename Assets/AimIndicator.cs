@@ -1,6 +1,9 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
+using Color = UnityEngine.Color;
 
 public class AimIndicator : MonoBehaviour
 {
@@ -27,6 +30,10 @@ public class AimIndicator : MonoBehaviour
     {
         if (playerController != null)
         {
+            Color modifiedColor = new Color(playerController.killColor.color.r, playerController.killColor.color.g, playerController.killColor.color.b, 0.5f);
+            arrowHeadSpriteRenderer.color = modifiedColor;
+            lineRenderer.startColor = modifiedColor;
+            lineRenderer.endColor = modifiedColor;
             if (playerController.onAction || !playerShooting.canShoot)
             {
                 lineRenderer.enabled = false;
@@ -61,7 +68,7 @@ public class AimIndicator : MonoBehaviour
         float distance = Mathf.Min(distanceToTarget, maxDistance);
 
         // Realiza o Raycast para verificar colisões
-        float arrowHeadWidth = arrowHeadSpriteRenderer.bounds.size.x / 2f;
+        float arrowHeadWidth = (arrowHeadSpriteRenderer.bounds.size.x - 0.2f) / 2f;
         RaycastHit2D hit = Physics2D.CircleCast(origin.position, arrowHeadWidth, direction, distance, collisionMask);
 
         // Se houver colisão, ajusta a distância até o ponto de colisão

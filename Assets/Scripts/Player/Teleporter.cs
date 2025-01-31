@@ -56,29 +56,39 @@ public class Teleporter : MonoBehaviour
                     playerShooting.canShoot = true;
                     if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Destructible"))
                     {
-                        player.transform.position = collision.gameObject.transform.position;
-
-                        playerShooting.shotsFired = 0;
-
-                        LifeControler life = collision.gameObject.GetComponent<LifeControler>();
-                        Vector2 forceDirection = (collision.gameObject.transform.position - transform.position).normalized;
-
-                        if (life != null)
-                        {
-                            life.ValidateDmgTypeByTarget(true, 9999, forceDirection);
-                        }
-
                         PlayerController playerController = player.GetComponent<PlayerController>();
-                        if (playerController != null)
+
+                        if (playerController.health <= 0)
                         {
-                            playerController.deathTimer += 2f;
-                            playerController.timerBar.transform.DOScale(new Vector3(1.15f, 1.15f, 1.15f), 0.1f)
-                               .OnComplete(() =>
-                               {
-                                   // Volta ao tamanho original em 0.5 segundos
-                                   playerController.timerBar.transform.DOScale(new Vector3(1f, 1f, 1f), 0.5f);
-                               });
+                            return;
                         }
+                        else
+                        {
+                            player.transform.position = collision.gameObject.transform.position;
+
+                            playerShooting.shotsFired = 0;
+
+                            LifeControler life = collision.gameObject.GetComponent<LifeControler>();
+                            Vector2 forceDirection = (collision.gameObject.transform.position - transform.position).normalized;
+
+                            if (life != null)
+                            {
+                                life.ValidateDmgTypeByTarget(true, 9999, forceDirection);
+                            }
+
+
+                            if (playerController != null)
+                            {
+                                playerController.deathTimer += 2f;
+                                playerController.timerBar.transform.DOScale(new Vector3(1.15f, 1.15f, 1.15f), 0.1f)
+                                   .OnComplete(() =>
+                                   {
+                                       // Volta ao tamanho original em 0.5 segundos
+                                       playerController.timerBar.transform.DOScale(new Vector3(1f, 1f, 1f), 0.5f);
+                                   });
+                            }
+                        }
+                      
                     } 
                     else
                     {
@@ -110,15 +120,22 @@ public class Teleporter : MonoBehaviour
         if (!hasCollided)
         {
             Destroy(gameObject);
-            PlayerController playerControl = player.GetComponent<PlayerController>();
-            if (playerControl != null)
+            if (gerenciadorFase != null)
             {
-                playerControl.HandleDeath("You lost your star!");
+                gerenciadorFase.LostCombo();
+            }
+
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                PlayerShooting playerShooting = player.GetComponent<PlayerShooting>();
+                if (playerShooting != null)
+                {
+                    playerShooting.ResetShoot();
+                }
             }
         }
     }
-
-
 }
 
 
