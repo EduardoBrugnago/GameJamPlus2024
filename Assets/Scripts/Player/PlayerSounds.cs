@@ -10,14 +10,14 @@ public class PlayerSounds : MonoBehaviour
 
     // Referências às músicas para cada estado
     public AudioClip TrowSfx;
-    public AudioClip DmgSfx;
+    public List<AudioClip> DmgSfx;
     public AudioClip TeleportSfx;
     public AudioClip DeathSfx;
     public AudioClip TeleportTwoSfx;
     public AudioClip StartSfx;
     public AudioClip AssSfx;
     public AudioClip dmgPlayer;
-    public AudioClip failSfx;
+    public List<AudioClip> failSfx;
     public List<AudioClip> GlassSfx;
     private AudioSource audioSource;
 
@@ -37,6 +37,25 @@ public class PlayerSounds : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
+    public void RandomDmgSound()
+    {
+        if (DmgSfx != null && DmgSfx.Count > 0)
+        {
+            int randomIndex = Random.Range(0, DmgSfx.Count);
+            audioSource.clip = DmgSfx[randomIndex];
+        }
+    }
+
+    public void RandomFailSound()
+    {
+        if (failSfx != null && failSfx.Count > 0)
+        {
+            int randomIndex = Random.Range(0, failSfx.Count);
+            audioSource.clip = failSfx[randomIndex];
+        }
+    }
+
+
     public void PlaySfx(SfxState state)
     {
         if (currentState == state && audioSource.isPlaying)
@@ -49,10 +68,10 @@ public class PlayerSounds : MonoBehaviour
                 audioSource.clip = TrowSfx;
                 break;
             case SfxState.Dmg:
-                audioSource.clip = DmgSfx;
+                RandomDmgSound();
                 break;
             case SfxState.Teleport:
-                audioSource.clip = TeleportSfx;
+                RandomDmgSound();
                 break;
             case SfxState.Death:
                 audioSource.clip = DeathSfx;
@@ -77,7 +96,7 @@ public class PlayerSounds : MonoBehaviour
                 audioSource.clip = dmgPlayer;
                 break;
             case SfxState.Fail:
-                audioSource.clip = failSfx;
+                RandomFailSound();
                 break;
 }
 
